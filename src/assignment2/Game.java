@@ -1,50 +1,57 @@
-package assignment2;
+/*Student Name: Brad Gray, Jake George
+ *EID: bg22946, 
+ *Lab Section: 16805
+*/
 
-import assignment2.ArrayList;
-import assignment2.feedback;
+package assignment2;
+import java.util.Scanner;
+
 
 public class Game
 {
 	
-	private int turnCounter;
-	private ArrayList<String> codeHistory;
+//	private int turnCounter;
+//	private ArrayList<String> codeHistory;
 	
 	
-	Game(boolean){
-		turnCounter = 12;
+	Game(boolean showCode){
+	//	turnCounter = 12;
 	}
 	
-	void RunGame(void){
+	void RunGame(){
 		
 	}
 	
-	public void DisplayHistory(void){
+	public void DisplayHistory(){
 		
 	}
 	
-	String GenerateHistory(feedback, String){
+	String GenerateHistory(String code){ //add feedback input object later
+	String temp = "";
+	return temp;
 		
 	}
 	
-	void DisplayWinMsg(void){
+	void DisplayWinMsg(){
 		
 	}
 	
-	void DisplayLoseMsg(void){
+	void DisplayLoseMsg(){
 		
 	}
 	
-	void DisplayPrompt(void){
+	void DisplayPrompt(){
 		
+	}
+	
+	public static void Main(String[] args){
+		System.out.println("You have 12 guesses to figure out the secret code or you lose the game. Are you ready to play? /n(Y/N):");
+		Scanner inputScanner = new Scanner(System.in); 
+		String playerInput = inputScanner.nextLine();
+		System.out.println(playerInput);
+		inputScanner.close();
 	}
 
 }
 
-public class Code{
-	
-}
 
-public class Feedback{
-	
-	
-}
