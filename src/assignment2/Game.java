@@ -25,8 +25,14 @@ public class Game
 	void RunGame(){
 		System.out.println("Staring the Game!"); //just seeing if it works
 		Code solutionCode =  new Code();
+		Code playerGuess = new Code();
 		solutionCode.GenerateSolution();
 		System.out.println("The solution is: "  + solutionCode.CodeToString());
+		playerGuess.GetNextGuess();
+		System.out.println("Your guess is: "  + playerGuess.CodeToString());
+		//now we need to compare
+		
+		
 	}
 	
 	public void DisplayHistory(){

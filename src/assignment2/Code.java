@@ -6,7 +6,9 @@
 package assignment2;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 
 
@@ -16,7 +18,7 @@ public class Code
 	private ArrayList<String> code;
 	private ArrayList<String> color;
 	
-	Code(){
+	Code(){  //change the size of the code (numPegs) and colors here in this constructor
 		numPegs = 4;
 		color = new ArrayList<String>();
 		color.add("B");
@@ -28,23 +30,50 @@ public class Code
 		code = new ArrayList<String>();
 	}
  
-	public void GenerateSolution(){
-		//Code temp = new Code(); //for now
-		//generate random characters (color values) for value of numPegs
+	public void GenerateSolution(){ //should work for any size code or number of colors
 		Random r =  new Random();
 		for (int i=0; i<numPegs; i++){
-			String codePeg = color.get(r.nextInt(color.size()-1));
+			String codePeg = color.get(r.nextInt(color.size())); //generates a random number between 0 (inclusive) and the color ArrayList size (non-inclusive). gets the value at that index
 			code.add(codePeg);
 		}
-		//can you generate random characters from the characters in color ArrayList?
 		return;
 	}
 	
 	public String CodeToString(){
-		//String convertedCode = new String(code.toString());
-		//System.out.println(convertedCode);
-		
-		return code.toString();
+		return new String(code.toString()).replaceAll("[^A-Za-z]", ""); //returns a string of the Color characters only - no brackets or commas, etc
 	}
 	
+	public void GetNextGuess(){
+		Scanner input = new Scanner(System.in);
+		String tempInput;
+		String c = new String() ;
+		boolean validEntry = true;
+		do{
+			try{
+				validEntry=true;
+				System.out.println("Please enter your guess: ");
+				tempInput = input.nextLine();
+				if(tempInput.length()!=numPegs){throw new InputMismatchException();} //throw exception if guess not equal to code size
+				for(int i=0; i<numPegs;i++){
+					c = tempInput.substring(i, i+1);
+					if (color.contains(c) ){
+						code.add(c); //loop to make changing code length easier. get each char, convert to string, and store in arrayList		
+					}else{ throw new InputMismatchException(); }
+				}
+			}
+			catch(InputMismatchException ex){
+				System.out.println("Please try again!");
+				validEntry=false;
+			}
+		}while(validEntry==false);
+		input.close();
+	}
+	
+	public boolean IsValid(String first){
+		return true;
+	}
+	
+	public boolean CompareCodes(Code playerGuess){
+		return true;
+	}
 }
