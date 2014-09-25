@@ -23,7 +23,10 @@ public class Game
 	}
 	
 	void RunGame(){
-		System.out.println("Staring the Game!");
+		System.out.println("Staring the Game!"); //just seeing if it works
+		Code solutionCode =  new Code();
+		solutionCode.GenerateSolution();
+		System.out.println("The solution is: "  + solutionCode.CodeToString());
 	}
 	
 	public void DisplayHistory(){
