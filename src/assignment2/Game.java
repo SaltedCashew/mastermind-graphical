@@ -11,17 +11,19 @@ import java.util.Scanner;
 
 public class Game
 {
-	
-//	private int turnCounter;
+	private boolean showSol; 
+	private int turnCounter;
 	private ArrayList<String> codeHistory;
 	
 	
 	Game(boolean showCode){
-	//	turnCounter = 12;
+		turnCounter = 12;
+		if (showCode==true){showSol = true;}
+		else {showSol = false;}
 	}
 	
 	void RunGame(){
-		
+		System.out.println("Staring the Game!");
 	}
 	
 	public void DisplayHistory(){
