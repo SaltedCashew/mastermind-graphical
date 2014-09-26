@@ -26,27 +26,29 @@ public class Game
 	}
 	
 	void RunGame(){
-		System.out.println("Starting the Game!"); //change later
+		System.out.println("Starting the Game!\n"); //change later
 		Code solutionCode =  new Code();
 		Code playerGuess = new Code();
 		solutionCode.GenerateSolution();
 		boolean gameOver = false;
 		
-		
-		System.out.println("The solution is: "  + solutionCode.CodeToString());
+		while(gameOver==false && this.turnCounter >0){
+		System.out.println("You have " + turnCounter + " guesses remaining.");	
+		if (showSol==true){System.out.println("The solution is: "  + solutionCode.CodeToString());}
 		playerGuess.GetNextGuess();
 		System.out.println("Your guess is: "  + playerGuess.CodeToString());
 		//now we need to compare
 		Feedback turnResult = new Feedback(); 
 		turnResult = solutionCode.CompareCodes(playerGuess);
-		System.out.println("The Number of Black Pegs (Game Class): " + turnResult.GetBlackPegNum());
-		System.out.println("The Number of White Pegs (Game Class): " + turnResult.GetWhitePegNum());
+		System.out.println("The Number of Black Pegs : " + turnResult.GetBlackPegNum());
+		System.out.println("The Number of White Pegs : " + turnResult.GetWhitePegNum());
 		codeHistory.add(playerGuess.CodeToString());
 		feedbackHist.add(turnResult); //change array list to strings later, convert then store as strings like codehistory?
 		turnCounter --;
 		gameOver = playerGuess.DetermineStatus(turnResult);
 		System.out.println(" ");
-		
+		playerGuess.ResetCode(); //erases the players guessed code for a clean start
+		}
 		
 		
 		//object created with white pegs and black pegs set to 0

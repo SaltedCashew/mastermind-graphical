@@ -52,7 +52,8 @@ public class Code
 			try{
 				validEntry=true;
 				System.out.println("Please enter your guess: ");
-				tempInput = input.nextLine();
+				//if(!input.hasNextLine()){ throw new InputMismatchException();}
+				tempInput = input.next();
 				if(tempInput.length()!=numPegs){throw new InputMismatchException();} //throw exception if guess not equal to code size
 				for(int i=0; i<numPegs;i++){
 					c = tempInput.substring(i, i+1);
@@ -65,8 +66,9 @@ public class Code
 				System.out.println("Please try again!");
 				validEntry=false;
 			}
+
 		}while(validEntry==false);
-		input.close();
+	//	input.close(); if close input here, then getnextguess fails on loops
 	}
 	
 	public boolean IsValid(String first){
@@ -112,5 +114,9 @@ public class Code
 	
 	public boolean DetermineStatus(Feedback turnResult){
 		return false;
+	}
+	
+	public void ResetCode(){
+		code.clear();
 	}
 }
