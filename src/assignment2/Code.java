@@ -45,7 +45,7 @@ public class Code
 	
 	public void GetNextGuess(){
 		Scanner input = new Scanner(System.in);
-		String tempInput;
+		String tempInput = new String();
 		String c = new String() ;
 		boolean validEntry = true;
 		do{
@@ -73,7 +73,44 @@ public class Code
 		return true;
 	}
 	
-	public boolean CompareCodes(Code playerGuess){
-		return true;
+	public Feedback CompareCodes(Code playerGuess){
+		//what are we doing here? Compare, create feedback pegs, and return a true if there are 4 black pegs
+		//do we actually need to boolean return? Make that a feedback method, not a code method?
+		ArrayList<String> solCopy = new ArrayList<String>(code.size());
+		ArrayList<String> playerCopy = new ArrayList<String>(playerGuess.code.size());
+		for(String item: code){
+			solCopy.add(item);
+		}
+		for(String item: playerGuess.code){
+			playerCopy.add(item);
+		}
+		Feedback turnResult = new Feedback();
+		int codeSize = numPegs;
+		for(int i=0; i<codeSize; i++){ //note: possible error if numPegs != size of either arrayList - add exception here?
+			if(solCopy.get(i).equals(playerCopy.get(i))){ //gets both strings at the index and checks if equal 
+				turnResult.AddBlackPeg();
+				solCopy.remove(i);
+				playerCopy.remove(i);
+				codeSize=codeSize - 1;
+				i--;
+			}
+		}
+		for(int i=0; i<solCopy.size();i++){ //now to get the number of white pegs
+			for(int j=0; j<playerCopy.size();j++){
+				if(solCopy.get(i).equals(playerCopy.get(j))){
+					turnResult.AddWhitePeg();
+					solCopy.remove(i);
+					playerCopy.remove(j);
+					i--;
+					break;
+				}
+			}
+		}
+		
+		return turnResult;
+	}
+	
+	public boolean DetermineStatus(Feedback turnResult){
+		return false;
 	}
 }
