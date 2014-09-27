@@ -1,5 +1,5 @@
 /*Student Name: Brad Gray, Jake George
- *EID: bg22946, 
+ *EID: bg22946, jag6626
  *Lab Section: 16805
 */
 
@@ -43,7 +43,7 @@ public class Code
 		return new String(code.toString()).replaceAll("[^A-Za-z]", ""); //returns a string of the Color characters only - no brackets or commas, etc
 	}
 	
-	public void GetNextGuess(){
+	public boolean GetNextGuess(){
 		Scanner input = new Scanner(System.in);
 		String tempInput = new String();
 		String c = new String() ;
@@ -54,6 +54,9 @@ public class Code
 				System.out.println("Please enter your guess: ");
 				//if(!input.hasNextLine()){ throw new InputMismatchException();}
 				tempInput = input.next();
+				if((tempInput.equals("History")) || (tempInput.equals("history"))){
+					return true;
+				}
 				if(tempInput.length()!=numPegs){throw new InputMismatchException();} //throw exception if guess not equal to code size
 				for(int i=0; i<numPegs;i++){
 					c = tempInput.substring(i, i+1);
@@ -63,21 +66,19 @@ public class Code
 				}
 			}
 			catch(InputMismatchException ex){
-				System.out.println("Please try again!");
+				System.out.println("INVALID GUESS!");
+				ResetCode();
 				validEntry=false;
 			}
 
 		}while(validEntry==false);
+		return false;
 	//	input.close(); if close input here, then getnextguess fails on loops
 	}
 	
-	public boolean IsValid(String first){
-		return true;
-	}
-	
+
 	public Feedback CompareCodes(Code playerGuess){
-		//what are we doing here? Compare, create feedback pegs, and return a true if there are 4 black pegs
-		//do we actually need to boolean return? Make that a feedback method, not a code method?
+		
 		ArrayList<String> solCopy = new ArrayList<String>(code.size());
 		ArrayList<String> playerCopy = new ArrayList<String>(playerGuess.code.size());
 		for(String item: code){
@@ -112,8 +113,8 @@ public class Code
 		return turnResult;
 	}
 	
-	public boolean DetermineStatus(Feedback turnResult){
-		return false;
+	public int NumberOfPegs(){
+		return numPegs;
 	}
 	
 	public void ResetCode(){

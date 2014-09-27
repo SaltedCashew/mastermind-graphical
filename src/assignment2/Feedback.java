@@ -1,5 +1,5 @@
 /*Student Name: Brad Gray, Jake George
- *EID: bg22946, 
+ *EID: bg22946, jag6626
  *Lab Section: 16805
 */
 
@@ -34,5 +34,10 @@ public class Feedback
 	public void ResetFeedback(){
 		numWhitePegs = 0;
 		numBlackPegs = 0;
+	}
+	
+	public String ToString(){
+		String Output = new String("" + numBlackPegs + " black peg(s) & " + numWhitePegs + " white peg(s)") ;
+		return Output;
 	}
 }
