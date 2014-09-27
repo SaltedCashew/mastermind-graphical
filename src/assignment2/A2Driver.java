@@ -19,7 +19,8 @@ public class A2Driver {
 				System.out.println("Are you ready to play? \n(Y/N):");
 				char c = inputScanner.next().charAt(0);
 				if(c=='y' || c=='Y'){  
-					Game masterMind = new Game(true);
+					boolean reveal = SpoilSecret();
+					Game masterMind = new Game(reveal);
 					masterMind.RunGame();
 				}else if (c=='n' || c=='N'){
 					//N
@@ -35,5 +36,31 @@ public class A2Driver {
 		
 		}
 		inputScanner.close();
+		
 	}	
+
+	private static boolean SpoilSecret(){
+		boolean repeat = false;
+		boolean spoil = false;
+		
+		Scanner input = new Scanner(System.in);
+		do{
+		System.out.println("Show the Secret Code? (Y/N)");	
+		char c = input.next().charAt(0);			
+		if(c=='y' || c=='Y'){  
+			spoil = true;
+			repeat = false;
+		}else if (c=='n' || c=='N'){
+			spoil = false;
+			repeat = false;
+		}
+		else{
+			System.out.println("(Y/N) please");
+			repeat = true;
+		}
+		}while(repeat == true);
+		return spoil;
+	}
+	
+	
 }
