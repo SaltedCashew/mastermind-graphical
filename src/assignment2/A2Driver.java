@@ -1,7 +1,8 @@
-/*Student Name: Brad Gray, Jake George
+/**Student Name: Brad Gray, Jake George
  *EID: bg22946, jag6626
  *Lab Section: 16805
-*/
+ *Assignment 2 - MasterMind
+**/
 
 package assignment2;
 
@@ -9,22 +10,35 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/*------------- A2Driver ------------------------/
+ * Main driver for running the Mastermind program.Starts the game and prompts with instructions
+ * Gets initial game variables from the player, such as if the secret code should be shown or hidden
+ * Creates a new game instance and runs the game 
+ */
+
 public class A2Driver {
 	
-	public static void main(String[] args){
+	public static void main(String[] args)
+	{
 		
 		Scanner inputScanner = new Scanner(System.in);
-		InstPrompt();
+		instPrompt();
 		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");
-		while(true) {
-			try{
+		while(true)
+		{
+			try
+			{
 				System.out.println("Are you ready to play? \n(Y/N):");
 				char c = inputScanner.next().charAt(0);
-				if(c=='y' || c=='Y'){  
-					boolean reveal = SpoilSecret();
+				if(c=='y' || c=='Y')
+				{  
+					boolean reveal = spoilSecret();
 					Game masterMind = new Game(reveal);
-					masterMind.RunGame();
-				}else if (c=='n' || c=='N'){
+					masterMind.runGame();
+				}
+				else if (c=='n' || c=='N')
+				{
 					//N
 					System.out.println("Ok then");
 					break;
@@ -40,31 +54,49 @@ public class A2Driver {
 		inputScanner.close();
 		
 	}	
-
-	private static boolean SpoilSecret(){
+	
+	/*------------- spoilSecret ------------------------/
+	 * Takes input on whether to display the secret code to the player
+	 * for ease/debugging, or if it should remain hidden.
+	 * Input: nothing
+	 * Returns: false if the code is to remain hidden, and true otherwise
+	 */
+	
+	private static boolean spoilSecret()
+	{
 		boolean repeat = false;
 		boolean spoil = false;
 		
 		Scanner input = new Scanner(System.in);
 		do{
-		System.out.println("Show the Secret Code? (Y/N)");	
-		char c = input.next().charAt(0);			
-		if(c=='y' || c=='Y'){  
-			spoil = true;
-			repeat = false;
-		}else if (c=='n' || c=='N'){
-			spoil = false;
-			repeat = false;
-		}
-		else{
-			System.out.println("(Y/N) please");
-			repeat = true;
-		}
+			System.out.println("Show the Secret Code? (Y/N)");	
+			char c = input.next().charAt(0);			
+			if(c=='y' || c=='Y')
+			{  
+				spoil = true;
+				repeat = false;
+			}
+			else if (c=='n' || c=='N')
+			{
+				spoil = false;
+				repeat = false;
+			}
+			else
+			{
+				System.out.println("(Y/N) please");
+				repeat = true;
+			}
 		}while(repeat == true);
 		return spoil;
 	}
 	
-	private static void InstPrompt()
+	/*------------- instPrompt ------------------------/
+	 * Static method for displaying the rules to the player
+	 * Input: nothing
+	 * Returns: nothing
+	 */
+	
+	private static void instPrompt()
 	{
 		//PrintStream prompt = new PrintStream();
 		System.out.println("Welcome to MasterMind\n");
