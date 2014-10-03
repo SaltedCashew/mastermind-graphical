@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Game
 {  
 	private boolean showSol; 
-	private static final int TURNS = 12;
+	//private static final int TURNS = 12;
 	private int turnCounter;
 	private int codeSize;
 	private int colorNum;
@@ -22,9 +22,9 @@ public class Game
 	private ArrayList<String> feedbackHist; //store the feedback history
 	
 	
-	Game(boolean showCode, int size, int colors)
+	Game(boolean showCode, int size, int colors, int numTurns)
 	{
-		turnCounter = TURNS;
+		turnCounter = numTurns;
 		colorNum = colors;
 		codeSize = size;
 		if (showCode == true){showSol = true;}
@@ -47,7 +47,7 @@ public class Game
 		final int NO_MORE_TURNS = 0;
 		while(gameOver==false && this.turnCounter > NO_MORE_TURNS)
 		{
-			System.out.println("You have " + turnCounter + " guesses remaining.");	
+			System.out.println("You have " + turnCounter + " guess(es) remaining.");	
 			if (showSol==true){ System.out.println("The solution is: " + solutionCode.codeToString() );}
 			
 			if(playerGuess.getNextGuess())

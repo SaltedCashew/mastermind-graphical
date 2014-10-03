@@ -36,8 +36,9 @@ public class A2Driver {
 				{  
 					int codeSize = getCodeSize();
 					int numColors = getColors();
+					int numTurns = getTurns();
 					boolean reveal = spoilSecret();
-					Game masterMind = new Game( reveal, codeSize, numColors );
+					Game masterMind = new Game( reveal, codeSize, numColors, numTurns);
 					masterMind.runGame();
 				}
 				else if (c == 'n' || c == 'N' )
@@ -164,6 +165,48 @@ public class A2Driver {
 		return size;
 	}
 
+	/*------------- getTurns ------------------------/
+	 * Takes input on the number to use in the game
+	 * Sets size to 12 by default, or if invalid entry
+	 * Input: nothing
+	 * Returns: size number of turns in the game
+	 */
+	
+	private static int getTurns()
+	{ 
+		boolean repeat = true;
+		int size = 12; //default
+		
+		try
+		{
+			Scanner input = new Scanner(System.in);
+			while(repeat==true){
+				System.out.println("Would you like to change the number of turns from the default of 12? (Y/N)");	
+				char c = input.next().charAt(0);			
+				if(c=='y' || c=='Y')
+				{  
+					System.out.println("Enter a reasonable, postive number of turns (otherwise, default will be used) ");
+					size = input.nextInt();
+					if(size < 1){ size = 12;} //12 is the default value;
+					repeat = false;
+				}
+				else if (c=='n' || c=='N')
+				{
+					repeat = false;
+				}
+				else
+				{
+					System.out.println("(Y/N) please");
+				}
+			}
+		}
+		catch(InputMismatchException e)
+		{
+			
+		}
+		System.out.println("The number of turns is now " + size + "\n");		
+		return size;
+	}
 	
 	/*------------- spoilSecret ------------------------/
 	 * Takes input on whether to display the secret code to the player
@@ -208,18 +251,20 @@ public class A2Driver {
 	{
 		System.out.println("Welcome to MasterMind\n");
 		System.out.println("The computer will think of a secret code. \nThe code consists of a default of 4 colored pegs. ");
-		System.out.println("The size of the code can be changed");
-		System.out.println("The pegs MUST be one of six colors: blue, green, orange, purple, red, or yellow.");
+		System.out.println("The size of the code can be changed!");
+		System.out.println("The pegs MUST be one of stated colors: default is blue, green, orange, purple, red, or yellow.");
+		System.out.println("The number of colors can be changed!\n");
 		System.out.println("A color may appear more than once in the code. You try to guess what colored pegs are in the code and what order they are in. ");
 		System.out.println("After you make a valid guess the result (feedback) will be displayed.");
 		System.out.println("The result consists of a black peg for each peg you have guessed exactly correct (color and position) in your guess.  ");
-		System.out.println(" For each peg in the guess that is the correct color, but is out of position, you get a white peg.");
-		System.out.println(" For each peg, which is fully incorrect, you get no feedback.  ");
+		System.out.println("For each peg in the guess that is the correct color, but is out of position, you get a white peg.");
+		System.out.println("For each peg, which is fully incorrect, you get no feedback. \n");
 		
 		System.out.println("Only the first letter of the color is displayed. B for Blue, R for Red, and so forth.  ");
 		System.out.println("When entering guesses you only need to enter the first character of each color as a capital letter.");
 		System.out.println("  ");
 		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");
+		System.out.println("(This can be changed too!)\n");
 		
 		
 		
