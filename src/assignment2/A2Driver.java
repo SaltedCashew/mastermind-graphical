@@ -6,7 +6,6 @@
 
 package assignment2;
 
-import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -64,11 +63,11 @@ public class A2Driver {
 	
 	private static boolean spoilSecret()
 	{
-		boolean repeat = false;
+		boolean repeat = true;
 		boolean spoil = false;
 		
 		Scanner input = new Scanner(System.in);
-		do{
+		while(repeat==true){
 			System.out.println("Show the Secret Code? (Y/N)");	
 			char c = input.next().charAt(0);			
 			if(c=='y' || c=='Y')
@@ -84,9 +83,8 @@ public class A2Driver {
 			else
 			{
 				System.out.println("(Y/N) please");
-				repeat = true;
 			}
-		}while(repeat == true);
+		}
 		return spoil;
 	}
 	
