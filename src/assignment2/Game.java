@@ -7,7 +7,10 @@ package assignment2;
 import java.util.ArrayList;
 
 
-
+/**
+ * Creates and runs the Mastermind game instance
+ * @author Brad Gray and Jake George, EE422C
+ **/
 public class Game
 {  
 	private boolean showSol; 
@@ -25,7 +28,10 @@ public class Game
 		feedbackHist = new ArrayList<String>();
 	}
 	
-	void runGame()
+	/**
+	 * Runs the Mastermind game for the implicit game instance
+	 **/
+	public void runGame()
 	{
 		System.out.println("Generating Secret Code...\n"); //change later
 		Code solutionCode =  new Code();
@@ -71,7 +77,8 @@ public class Game
 		
 	}
 	
-	public void displayHistory()
+	//Displays history of the players guesses, along with the results of those guesses
+	private void displayHistory()
 	{
 		if(codeHistory.size() <= 0)
 		{
@@ -89,15 +96,14 @@ public class Game
 		}
 	}
 	
-	
-	void displayWinMsg()
+	private void displayWinMsg()
 	{
 		System.out.println(" ");
 		System.out.println("You guessed the secret code! You Win! Do you want to play again?");
 		
 	}
 	
-	void displayLoseMsg(Code solution)
+	private void displayLoseMsg(Code solution)
 	{
 		System.out.println("You failed to guess the secret code! The answer was: " + (solution.codeToString()) + ". You Lose!");
 		System.out.println(" ");
