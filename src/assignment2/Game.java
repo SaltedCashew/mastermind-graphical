@@ -14,15 +14,20 @@ import java.util.ArrayList;
 public class Game
 {  
 	private boolean showSol; 
+	private static final int TURNS = 12;
 	private int turnCounter;
+	private int codeSize;
+	private int colorNum;
 	private ArrayList<String> codeHistory;  //stores the codes, but not the feedback
 	private ArrayList<String> feedbackHist; //store the feedback history
 	
 	
-	Game(boolean showCode)
+	Game(boolean showCode, int size, int colors)
 	{
-		turnCounter = 12;
-		if (showCode==true){showSol = true;}
+		turnCounter = TURNS;
+		colorNum = colors;
+		codeSize = size;
+		if (showCode == true){showSol = true;}
 		else {showSol = false;}
 		codeHistory = new ArrayList<String>();
 		feedbackHist = new ArrayList<String>();
@@ -34,15 +39,16 @@ public class Game
 	public void runGame()
 	{
 		System.out.println("Generating Secret Code...\n"); //change later
-		Code solutionCode =  new Code();
-		Code playerGuess = new Code();
+		Code solutionCode =  new Code(codeSize, colorNum);
+		Code playerGuess = new Code(codeSize, colorNum);
 		solutionCode.generateSolution();
 		boolean gameOver = false;
 		
-		while(gameOver==false && this.turnCounter >0)
+		final int NO_MORE_TURNS = 0;
+		while(gameOver==false && this.turnCounter > NO_MORE_TURNS)
 		{
 			System.out.println("You have " + turnCounter + " guesses remaining.");	
-			if (showSol==true){System.out.println("The solution is: "  + solutionCode.codeToString());}
+			if (showSol==true){ System.out.println("The solution is: " + solutionCode.codeToString() );}
 			
 			if(playerGuess.getNextGuess())
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.

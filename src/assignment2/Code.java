@@ -13,27 +13,35 @@ import java.util.Scanner;
 /**
  * Class for running the Mastermind program. Starts the game and prompts with instructions
  * Gets initial game variables from the player, such as if the secret code should be shown or hidden. 
- * Creates a new game instance and runs the game 
+ * Creates a new game instance and runs the game
+ * Color values can be changed in the constructor, up to a max of 26 
  * @author Brad Gray and Jake George, EE422C
  **/
 
 public class Code
 {
 	
-	private int numPegs;
+	private int numPegs; //size of solution
 	private ArrayList<String> code;
 	private ArrayList<String> color;
+	private int numColors; 
 	
-	Code()
-	{  //change the size of the code (numPegs) and colors here in this constructor
-		numPegs = 4;
+	Code(int codeSize, int colors) //
+	{  
+		numColors = colors;
+		numPegs = codeSize;
 		color = new ArrayList<String>();
-		color.add("B");
-		color.add("G");
-		color.add("O");
-		color.add("R");
-		color.add("Y");
-		color.add("P");
+		color.add("B"); //blue
+		color.add("G"); //green
+		color.add("O"); //orange
+		color.add("R"); //red
+		color.add("Y"); //yellow
+		color.add("P"); //purple
+		color.add("K"); //black
+		color.add("C"); //cyan
+		color.add("M"); //magenta
+		color.add("V"); //violet
+		
 		code = new ArrayList<String>();
 	}
  
@@ -41,11 +49,11 @@ public class Code
 	 * Secret code stored with Game instance 
 	 **/
 	public void generateSolution()
-	{ //should work for any size code or number of colors
+	{ 	//should work for any size code or number of colors
 		Random r =  new Random();
-		for (int i=0; i<numPegs; i++)
+		for (int i = 0; i < numPegs; i++)
 		{
-			String codePeg = color.get(r.nextInt(color.size())); //generates a random number between 0 (inclusive) and the color ArrayList size (non-inclusive). gets the value at that index
+			String codePeg = color.get(r.nextInt(numColors)); //generates a random number between 0 (inclusive) and the color ArrayList size (non-inclusive). gets the value at that index
 			code.add(codePeg);
 		}
 		return;
@@ -68,8 +76,8 @@ public class Code
 	public boolean getNextGuess()
 	{
 		Scanner input = new Scanner(System.in);
-		String tempInput = new String();
-		String c = new String() ;
+		String tempInput = new String(); //using this as the next token
+		String c = new String() ;  //c will be a character from the tempInput token
 		boolean validEntry = true;
 		do
 		{
@@ -103,6 +111,7 @@ public class Code
 
 		}while(validEntry==false);
 		return false;
+		
 	//	input.close(); if close input here, then getnextguess fails on loops
 	}
 	
@@ -137,18 +146,13 @@ public class Code
 				i--;
 			}
 		}
-		for(int i=0; i<solCopy.size();i++)
-		{ //now to get the number of white pegs
-			for(int j=0; j<playerCopy.size();j++)
+		
+		for(String element: playerCopy) //iterate through playerguess arrayList
+		{
+			if(solCopy.contains(element)) //if the current element exists in the solution copy, add white peg and remove from solution copy
 			{
-				if(solCopy.get(i).equals(playerCopy.get(j)))
-				{
-					turnResult.addWhitePeg();
-					solCopy.remove(i);
-					playerCopy.remove(j);
-					i--;
-					break;
-				}
+				turnResult.addWhitePeg(); 
+				solCopy.remove(element);
 			}
 		}
 		

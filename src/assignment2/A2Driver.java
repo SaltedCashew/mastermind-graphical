@@ -8,6 +8,7 @@ package assignment2;
 
 
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,13 +19,13 @@ import java.util.Scanner;
  * @author Brad Gray and Jake George, EE422C
  **/
 public class A2Driver {
-		
+	
 	public static void main(String[] args)
 	{
 		
 		Scanner inputScanner = new Scanner(System.in);
 		instPrompt();
-		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");
+		
 		while(true)
 		{
 			try
@@ -33,11 +34,13 @@ public class A2Driver {
 				char c = inputScanner.next().charAt(0);
 				if(c=='y' || c=='Y')
 				{  
+					int codeSize = getCodeSize();
+					int numColors = getColors();
 					boolean reveal = spoilSecret();
-					Game masterMind = new Game(reveal);
+					Game masterMind = new Game( reveal, codeSize, numColors );
 					masterMind.runGame();
 				}
-				else if (c=='n' || c=='N')
+				else if (c == 'n' || c == 'N' )
 				{
 					//N
 					System.out.println("Ok then");
@@ -55,13 +58,119 @@ public class A2Driver {
 		
 	}	
 	
+	/*------------- getCodeSize ------------------------/
+	 * Takes input on the size of code to use in the game
+	 * Sets size to 4 by default, or if invalid entry
+	 * Input: nothing
+	 * Returns: size size of desired code
+	 */
+	
+	private static int getCodeSize()
+	{ 
+		boolean repeat = true;
+		int size = 4; //default
+		
+		try
+		{
+			Scanner input = new Scanner(System.in);
+			while(repeat==true){
+				System.out.println("Would you like to change the code size from the default of 4? (Y/N)");	
+				char c = input.next().charAt(0);			
+				if(c=='y' || c=='Y')
+				{  
+					System.out.println("Enter the reasonable, postive size code (otherwise, default will be used) ");
+					size = input.nextInt();
+					if(size < 1){ size = 4;}
+					repeat = false;
+				}
+				else if (c=='n' || c=='N')
+				{
+					repeat = false;
+				}
+				else
+				{
+					System.out.println("(Y/N) please");
+				}
+			}
+		}
+		catch(InputMismatchException e)
+		{
+			
+		}
+		System.out.println("Now using a code size of " + size + "\n");		
+		return size;
+	}
+
+	/*------------- getColors ------------------------/
+	 * Takes input on the number to use in the game
+	 * Sets size to 6 by default, or if invalid entry
+	 * Input: nothing
+	 * Returns: size size of desired code
+	 */
+	
+	private static int getColors()
+	{ 
+		boolean repeat = true;
+		int size = 6; //default
+		
+		try
+		{
+			Scanner input = new Scanner(System.in);
+			while(repeat==true){
+				System.out.println("Would you like to change the number of colors from the default of 6? (Y/N)");	
+				char c = input.next().charAt(0);			
+				if(c=='y' || c=='Y')
+				{  
+					System.out.println("Please enter a number between 1 and 10 (otherwise, 6 will be used) ");
+					size = input.nextInt();
+					if(size < 1 || size > 10){ 
+						size = 6;}
+					repeat = false;
+				}
+				else if (c=='n' || c=='N')
+				{
+					repeat = false;
+				}
+				else
+				{
+					System.out.println("(Y/N) please");
+				}
+			}
+		}
+		catch(InputMismatchException e)
+		{
+			
+		}
+		System.out.println("Now using " + size + " different colors\n");	
+		
+		ArrayList<String> colorList = new ArrayList<String>();
+		colorList.add("B for Blue");
+		colorList.add("G for Green");
+		colorList.add("O for Orange");
+		colorList.add("R for Red");
+		colorList.add("Y for Yellow");
+		colorList.add("P for Purple");
+		colorList.add("K for Black");
+		colorList.add("C for Cyan");
+		colorList.add("M for Magenta");
+		colorList.add("V for Violet");
+		
+		System.out.println("The colors are:");	
+		for (int index = 0; index < size; index++)
+		{
+			System.out.println(colorList.get(index));	
+		}	
+		System.out.println("\n");
+		return size;
+	}
+
+	
 	/*------------- spoilSecret ------------------------/
 	 * Takes input on whether to display the secret code to the player
 	 * for ease/debugging, or if it should remain hidden.
 	 * Input: nothing
 	 * Returns: false if the code is to remain hidden, and true otherwise
 	 */
-	
 	private static boolean spoilSecret()
 	{
 		boolean repeat = true;
@@ -98,7 +207,8 @@ public class A2Driver {
 	private static void instPrompt()
 	{
 		System.out.println("Welcome to MasterMind\n");
-		System.out.println("The computer will think of a secret code. \nThe code consists of 4 colored pegs. ");
+		System.out.println("The computer will think of a secret code. \nThe code consists of a default of 4 colored pegs. ");
+		System.out.println("The size of the code can be changed");
 		System.out.println("The pegs MUST be one of six colors: blue, green, orange, purple, red, or yellow.");
 		System.out.println("A color may appear more than once in the code. You try to guess what colored pegs are in the code and what order they are in. ");
 		System.out.println("After you make a valid guess the result (feedback) will be displayed.");
@@ -109,6 +219,9 @@ public class A2Driver {
 		System.out.println("Only the first letter of the color is displayed. B for Blue, R for Red, and so forth.  ");
 		System.out.println("When entering guesses you only need to enter the first character of each color as a capital letter.");
 		System.out.println("  ");
+		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");
+		
+		
 		
 	}
 	
