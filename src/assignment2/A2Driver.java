@@ -9,6 +9,7 @@ package assignment2;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -74,7 +75,7 @@ public class A2Driver {
 		try
 		{
 			Scanner input = new Scanner(System.in);
-			while(repeat==true){
+			while(repeat == true){
 				System.out.println("Would you like to change the code size from the default of 4? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
@@ -94,10 +95,7 @@ public class A2Driver {
 				}
 			}
 		}
-		catch(InputMismatchException e)
-		{
-			
-		}
+		catch(InputMismatchException e)	{	} //catch the exception so it doesn't go elsewhere, causes things to just keep going
 		System.out.println("Now using a code size of " + size + "\n");		
 		return size;
 	}
@@ -117,7 +115,7 @@ public class A2Driver {
 		try
 		{
 			Scanner input = new Scanner(System.in);
-			while(repeat==true){
+			while(repeat == true){
 				System.out.println("Would you like to change the number of colors from the default of 6? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
@@ -138,14 +136,10 @@ public class A2Driver {
 				}
 			}
 		}
-		catch(InputMismatchException e)
-		{
+		catch(InputMismatchException e) { } //catch the exception so it doesn't go elsewhere, causes things to just keep going
 			
-		}
 		System.out.println("Now using " + size + " different colors\n");	
-		
-		ArrayList<String> colorList = new ArrayList<String>();
-		colorList.add("B for Blue");
+		ArrayList<String> colorList = new ArrayList<String>(10);
 		colorList.add("G for Green");
 		colorList.add("O for Orange");
 		colorList.add("R for Red");
@@ -180,7 +174,7 @@ public class A2Driver {
 		try
 		{
 			Scanner input = new Scanner(System.in);
-			while(repeat==true){
+			while(repeat == true){
 				System.out.println("Would you like to change the number of turns from the default of 12? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
@@ -200,10 +194,7 @@ public class A2Driver {
 				}
 			}
 		}
-		catch(InputMismatchException e)
-		{
-			
-		}
+		catch(InputMismatchException e)	{ } //catch the exception so it doesn't go elsewhere, causes things to just keep going
 		System.out.println("The number of turns is now " + size + "\n");		
 		return size;
 	}

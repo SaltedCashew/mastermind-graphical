@@ -22,7 +22,7 @@ public class Game
 	private ArrayList<String> feedbackHist; //store the feedback history
 	
 	
-	Game(boolean showCode, int size, int colors, int numTurns)
+	Game(boolean showCode, int size, int colors, int numTurns) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
 		turnCounter = numTurns;
 		colorNum = colors;
