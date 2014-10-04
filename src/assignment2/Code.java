@@ -104,7 +104,7 @@ public class Code
 			}
 			catch(InputMismatchException ex)
 			{
-				System.out.println("INVALID GUESS!");
+				System.out.println("INVALID GUESS! Make sure you use the have the correct number of pegs and the right colors.");
 				resetCode();
 				validEntry=false;
 			}

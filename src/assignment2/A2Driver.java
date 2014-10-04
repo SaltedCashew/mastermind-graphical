@@ -35,24 +35,32 @@ public class A2Driver {
 				char c = inputScanner.next().charAt(0);
 				if(c=='y' || c=='Y')
 				{  
-					int codeSize = getCodeSize();
-					int numColors = getColors();
-					int numTurns = getTurns();
-					boolean reveal = spoilSecret();
+					System.out.println("Press Y to edit game settings. Press any other button to skip\n():");
+					c = inputScanner.next().charAt(0);
+					int codeSize = 4;
+					int numColors = 6;
+					int numTurns = 12;
+					boolean reveal = false;
+					if(c=='y' || c=='Y')
+					{  
+						codeSize = getCodeSize();
+						numColors = getColors();
+						numTurns = getTurns();
+						reveal = spoilSecret();
+					}
 					Game masterMind = new Game( reveal, codeSize, numColors, numTurns);
 					masterMind.runGame();
 				}
 				else if (c == 'n' || c == 'N' )
 				{
 					//N
-					System.out.println("Ok then");
+					System.out.println("Program terminated...");
 					break;
 				}
 				else{throw new InputMismatchException();}		//exception for invalid input	
 			}
 			catch (InputMismatchException ex){
-				System.out.println("\nSeriously? Try again.\n");
-		
+				System.out.println("\nPlease input y or n.\n");
 			}
 		
 		}
@@ -76,7 +84,7 @@ public class A2Driver {
 		{
 			Scanner input = new Scanner(System.in);
 			while(repeat == true){
-				System.out.println("Would you like to change the code size from the default of 4? (Y/N)");	
+				System.out.println("Would you like to edit the code size? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
 				{  
@@ -116,7 +124,7 @@ public class A2Driver {
 		{
 			Scanner input = new Scanner(System.in);
 			while(repeat == true){
-				System.out.println("Would you like to change the number of colors from the default of 6? (Y/N)");	
+				System.out.println("Would you like to edit the number of colors? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
 				{  
@@ -176,7 +184,7 @@ public class A2Driver {
 		{
 			Scanner input = new Scanner(System.in);
 			while(repeat == true){
-				System.out.println("Would you like to change the number of turns from the default of 12? (Y/N)");	
+				System.out.println("Would you like to edit the number of turns? (Y/N)");	
 				char c = input.next().charAt(0);			
 				if(c=='y' || c=='Y')
 				{  
@@ -243,9 +251,7 @@ public class A2Driver {
 	{
 		System.out.println("Welcome to MasterMind\n");
 		System.out.println("The computer will think of a secret code. \nThe code consists of a default of 4 colored pegs. ");
-		System.out.println("The size of the code can be changed!");
 		System.out.println("The pegs MUST be one of stated colors: default is blue, green, orange, purple, red, or yellow.");
-		System.out.println("The number of colors can be changed!\n");
 		System.out.println("A color may appear more than once in the code. You try to guess what colored pegs are in the code and what order they are in. ");
 		System.out.println("After you make a valid guess the result (feedback) will be displayed.");
 		System.out.println("The result consists of a black peg for each peg you have guessed exactly correct (color and position) in your guess.  ");
@@ -255,9 +261,8 @@ public class A2Driver {
 		System.out.println("Only the first letter of the color is displayed. B for Blue, R for Red, and so forth.  ");
 		System.out.println("When entering guesses you only need to enter the first character of each color as a capital letter.");
 		System.out.println("  ");
-		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");
-		System.out.println("(This can be changed too!)\n");
-		
+		System.out.println("Type \"history\" at any time to see your previous guesses.");
+		System.out.println("You have 12 guesses to figure out the secret code or you lose the game.");		
 		
 		
 	}
