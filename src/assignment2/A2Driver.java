@@ -140,6 +140,7 @@ public class A2Driver {
 			
 		System.out.println("Now using " + size + " different colors\n");	
 		ArrayList<String> colorList = new ArrayList<String>(10);
+		colorList.add("B for Blue");
 		colorList.add("G for Green");
 		colorList.add("O for Orange");
 		colorList.add("R for Red");
