@@ -35,7 +35,7 @@ public class A2Driver {
 				char c = inputScanner.next().charAt(0);
 				if(c=='y' || c=='Y')
 				{  
-					System.out.println("Press Y to edit game settings. Press any other button to skip\n():");
+					System.out.println("Press Y to edit game settings. Press any other button to skip:");
 					c = inputScanner.next().charAt(0);
 					int codeSize = 4;
 					int numColors = 6;
