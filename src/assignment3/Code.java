@@ -52,7 +52,7 @@ public class Code
 	{ 
 		String temp = "";
 		for(Pegs p : code){
-			temp += p;
+			temp += p.toString();
 		}
 		return temp;
 	}

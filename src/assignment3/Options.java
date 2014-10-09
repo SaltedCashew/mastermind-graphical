@@ -119,9 +119,9 @@ public class Options
 			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
 				if(input == JOptionPane.YES_OPTION )
 				{  
-					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and 10 (otherwise, 6 will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
+					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.MaxColors() + " (otherwise, 6 will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
 					size = Integer.parseInt(input2);
-					if(size < 1 || size > 10){ 
+					if(size < 1 || size > Colors.MaxColors()){ 
 						size = 6;}
 				}
 		}
@@ -131,7 +131,7 @@ public class Options
 		StringBuilder msg = new StringBuilder("<html>Now using " + size + " different colors<br>");
 		msg.append("The colors are:<br>");
 		for(int k = 0; k<size; k++){
-			msg.append(" " + Pegs.GetColors(k) + "<br>");
+			msg.append(" " + Colors.GetColors(k) + "<br>");
 		}
 		JOptionPane.showMessageDialog(null, msg);
 		return size;
