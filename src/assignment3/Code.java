@@ -78,11 +78,10 @@ public class Code
 				{
 					return true;
 				}
-				if(inGuess.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");} //throw exception if guess not equal to code size
+				if(inGuess.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");}
 				for(int i=0; i<numPegs;i++)
 				{
 					c = inGuess.substring(i, i+1);
-					
 					code.add(new Pegs(c, numColors));
 				}
 			}
@@ -94,8 +93,6 @@ public class Code
 
 		}while(validEntry==false);
 		return false;
-		
-	//	input.close(); if close input here, then getnextguess fails on loops
 	}
 	
 	/**
@@ -130,19 +127,15 @@ public class Code
 			}
 		}
 		
-		for(int i=0; i<codeSize; i++)
-		{ 
-			for(int k = 0; k < codeSize; k++){
-				if(solCopy.get(k).Equals(playerCopy.get(i))) //if both pegs are equal, but positions are not
-				{ 
-					turnResult.addWhitePeg();
-					solCopy.remove(k); //remove from the copy, it's already been included in the feedback
-					playerCopy.remove(i); //same as above, no need to check the same peg again
-					codeSize=codeSize - 1;
-					i--;
-				}
+		for(Pegs p : playerCopy){
+			for(int k = 0; k < solCopy.size(); k++)
+			if(p.Equals(solCopy.get(k))) //if both pegs are equal, but positions are not
+			{
+				turnResult.addWhitePeg();
+				solCopy.remove(p);
+				break;
 			}
-			
+	
 		}
 		return turnResult;
 	}

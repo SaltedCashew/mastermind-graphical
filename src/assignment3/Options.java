@@ -131,7 +131,7 @@ public class Options
 		StringBuilder msg = new StringBuilder("<html>Now using " + size + " different colors<br>");
 		msg.append("The colors are:<br>");
 		for(int k = 0; k<size; k++){
-			msg.append(" " + Colors.GetColors(k) + "<br>");
+			msg.append(" " + Colors.GetColor(k).toString() + "<br>");
 		}
 		JOptionPane.showMessageDialog(null, msg);
 		return size;

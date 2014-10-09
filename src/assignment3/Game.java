@@ -53,9 +53,15 @@ public class Game
 			{ 
 				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");
 			}
-			if(playerGuess.getNextGuess(turnPrompt))
+			boolean displayHist = playerGuess.getNextGuess(turnPrompt); //returns true if "History" or false if a valid guess
+			if(displayHist)
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.
 				gameBoard.displayHistory();
+			}
+			else if(gameBoard.InHistory(playerGuess.codeToString()))
+			{
+				JOptionPane.showMessageDialog(null, "You've already guessed that. Try again"); 
+				playerGuess.resetCode();
 			}
 			else
 			{

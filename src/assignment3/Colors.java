@@ -8,49 +8,63 @@ public class Colors
 	String colorName;
 	String colorInit;
 	final static int MAX_COLORS = 10;
-	final int COLOR_NAME = 6; //start of the color name in the string
+	final static int NAME_LOCATION = 0;
+	final static int INIT_LOCATION = 1;
+	final static int COLOR_NAME = 6;
 
 	public Colors()
 	{  
-		String tempColor = new String(GetRandomColor(MAX_COLORS));
-		colorInit = new String(tempColor.substring(0,1));
-		colorName = new String (tempColor.substring(COLOR_NAME, tempColor.length()));
+		Colors tempColor = GetRandomColor(MAX_COLORS);
+		colorInit = tempColor.colorInit;
+		colorName = tempColor.colorName;
 	}
 	
 	public Colors(int numColors)
 	{  
-		String tempColor;
-		if (numColors>MAX_COLORS)
+		Colors tempColor;
+		if (numColors>MAX_COLORS || numColors < 0)
 		{
-			tempColor = new String(GetRandomColor(MAX_COLORS));
+			tempColor = GetRandomColor(MAX_COLORS);
 		}
 		else{
-			tempColor = new String(GetRandomColor(numColors));	
+			tempColor = GetRandomColor(numColors);	
 		}
-		colorInit = new String (tempColor.substring(0,1));
-		colorName = new String (tempColor.substring(COLOR_NAME, tempColor.length()));
+		colorInit = tempColor.colorInit;
+		colorName = tempColor.colorName;
+	}
+	
+	Colors(String s, int numCols){
+		ArrayList<Colors> colorList = CreateColors();
+		boolean found = false;
+		for(int k = 0; k < numCols; k++){
+			if(colorList.get(k).colorInit.equals(s))
+			{
+				colorInit = colorList.get(k).colorInit;
+				colorName = colorList.get(k).colorName;
+				found = true;
+				break;
+			}
+		}
+
+		if (found == false){ throw new IllegalGuessException("Please pick a suitable color (Note: Entries must be in CAPS)"); }
+	}
+	
+	Colors(String colorInitial, String cName){
+		colorInit = colorInitial;
+		colorName = cName;
+	}
+	
+	public String toString(){
+		return new String ("" + colorInit + " : " + colorName);
 	}
 	
 	public String toString_Init(){
 		return colorInit;
 	}
+
 	
-	public String toString_Name(){
-		return colorName;
-	}
-	
-	Colors(String s, int numCols){
-		ArrayList<String> temp = CreateColors();
-		if(temp.contains(s) && temp.indexOf(s) < numCols){
-			String tempColor = temp.get(temp.indexOf(s));
-			colorInit = tempColor.substring(0,1);
-			colorName = tempColor.substring(COLOR_NAME, tempColor.length()); 
-		}
-		else{throw new IllegalGuessException("Please pick a suitable color (Note: Entries must be in CAPS)"); }
-	}
-	
-	public static String GetColors(int k){
-		ArrayList<String> temp = CreateColors();
+	public static Colors GetColor(int k){
+		ArrayList<Colors> temp = CreateColors();
 		return temp.get(k);
 	}
 	
@@ -58,26 +72,50 @@ public class Colors
 		return MAX_COLORS;
 	}
 	
-	private static ArrayList<String> CreateColors(){
+	private static ArrayList<Colors> CreateColors()
+	{
 		ArrayList<String> temp = new ArrayList<String>();
-		temp.add("B for Blue"); //blue
-		temp.add("G for Green"); //green
-		temp.add("O for Orange"); //orange
-		temp.add("R for Red"); //red
-		temp.add("Y for Yellow"); //yellow
-		temp.add("P for Purple"); //purple
-		temp.add("K for Black"); //black
-		temp.add("C for Cyan"); //cyan
-		temp.add("M for Maroon"); //maroon
-		temp.add("V for Violet"); //violet
-		return temp;
+		temp.add("Blue"); //blue
+		temp.add("Green"); //green
+		temp.add("Orange"); //orange
+		temp.add("Red"); //red
+		temp.add("Yellow"); //yellow
+		temp.add("Purple"); //purple
+		temp.add("Black"); //black
+		temp.add("Cyan"); //cyan
+		temp.add("Maroon"); //maroon
+		temp.add("Violet"); //violet
+		ArrayList<String> temp2 = new ArrayList<String>();
+		temp2.add("B"); //blue
+		temp2.add("G"); //green
+		temp2.add("O"); //orange
+		temp2.add("R"); //red
+		temp2.add("Y"); //yellow
+		temp2.add("P"); //purple
+		temp2.add("K"); //black
+		temp2.add("C"); //cyan
+		temp2.add("M"); //maroon
+		temp2.add("V"); //violet
+		ArrayList<Colors> colorList = new ArrayList<Colors>();
+		for(int k = 0; k < temp.size(); k++){
+			colorList.add(new Colors(temp2.get(k), temp.get(k)) );
+		}
+		
+		return colorList;
 	}
-	
-	private String GetRandomColor(int max){
+		
+	private Colors GetRandomColor(int max){
 			
 		Random r =  new Random();
 		int k = r.nextInt(max);
-		return GetColors(k);
+		return GetColor(k);
+	}
+	
+	public boolean Equals(Colors test){
+		if(colorInit.equals(test.colorInit)){
+			return true;
+		}
+		return false;
 	}
 
 }

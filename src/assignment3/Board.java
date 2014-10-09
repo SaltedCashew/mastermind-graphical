@@ -67,4 +67,9 @@ public class Board
 		return turnsRemaining;
 	}
 
+	public boolean InHistory(String test) {
+		if(codeHistory.contains(test)){return true; }
+		return false;
+	}
+
 }

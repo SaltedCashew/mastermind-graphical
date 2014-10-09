@@ -24,7 +24,7 @@ public class Pegs
 	}
 	
 	public boolean Equals(Pegs test){
-		if (pegColor.equals(test.pegColor)) { return true;}
+		if (pegColor.Equals(test.pegColor)) { return true;}
 		return false;
 	}
 } 

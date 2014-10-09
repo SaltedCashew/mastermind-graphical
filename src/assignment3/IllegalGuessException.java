@@ -19,7 +19,6 @@ public class IllegalGuessException extends InputMismatchException
 	public IllegalGuessException(String arg0)
 	{
 		JOptionPane.showMessageDialog(null, arg0);
-		System.out.println("\n" + arg0);
 	}
 
 }
