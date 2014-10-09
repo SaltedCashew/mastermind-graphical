@@ -4,8 +4,6 @@
 */
 
 package assignment3;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 
@@ -17,18 +15,14 @@ public class Game
 {  
 	private boolean showSol; 
 	Options gameOptions;
-	//private static final int TURNS = 12;
-	private ArrayList<String> codeHistory;  //stores the codes, but not the feedback
-	private ArrayList<String> feedbackHist; //store the feedback history
-	
+	Board gameBoard;
 	
 	Game(boolean showCode) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
 		gameOptions = new Options(); 
 		if (showCode == true){showSol = true;}
 		else {showSol = false;} //using showSol as a hard overwrite for showing the solution
-		codeHistory = new ArrayList<String>();
-		feedbackHist = new ArrayList<String>();
+		gameBoard = new Board(gameOptions.numTurns);
 	}
 	
 	
@@ -51,17 +45,16 @@ public class Game
 		boolean gameOver = false;
 		
 		final int NO_MORE_TURNS = 0;
-		while(gameOver==false && gameOptions.turns() > NO_MORE_TURNS)
+		while(gameOver==false && gameBoard.turnsLeft() > NO_MORE_TURNS)
 		{	StringBuilder turnPrompt = new StringBuilder();
 			turnPrompt.append("<html>You have " + gameOptions.turns() + " guess(es) remaining.<br>");
 			if (showSol==true || gameOptions.spoilVal()==true)
 			{ 
 				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");
 			}
-			
 			if(playerGuess.getNextGuess(turnPrompt))
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.
-				displayHistory();
+				gameBoard.displayHistory();
 			}
 			else
 			{
@@ -73,9 +66,9 @@ public class Game
 				guessResponse.append("The number of Black Pegs : " + turnResult.getBlackPegNum() + "<br>");
 				guessResponse.append("The Number of White Pegs :  " + turnResult.getWhitePegNum() + "<br>");
 				JOptionPane.showMessageDialog(null, guessResponse);
-				codeHistory.add(playerGuess.codeToString());
-				feedbackHist.add(turnResult.toString()); //change array list to strings later, convert then store as strings like codehistory?
-				gameOptions.takeTurn();
+				gameBoard.addToCodeHistory(playerGuess.codeToString());
+				gameBoard.addToFeedbackHistory(turnResult.toString());
+				gameBoard.takeTurn();
 				if(turnResult.getBlackPegNum() == solutionCode.numberOfPegs())
 				{
 					gameOver = true;
@@ -91,22 +84,7 @@ public class Game
 		
 	}
 	
-	//Displays history of the players guesses, along with the results of those guesses
-	private void displayHistory()
-	{
-		if(codeHistory.size() <= 0)
-		{
-			JOptionPane.showMessageDialog(null, "No History to show!");
-		}
-		else
-		{	StringBuilder hist = new StringBuilder("<html>Turn Number: &emsp &emsp Guess: &emsp &emsp Result:<br><br>");
-			for(int index = 0; index < codeHistory.size(); index++)
-			{
-				hist.append(" &emsp &emsp " + (index + 1) + "  &nbsp &nbsp &emsp &emsp &emsp &emsp " + (codeHistory.get(index)) + " &emsp &emsp " + (feedbackHist.get(index)) + "<br>");
-			}
-			JOptionPane.showMessageDialog(null, hist, "Game History", 0);
-		}
-	}
+
 	
 	private void displayWinMsg()
 	{  
@@ -119,5 +97,6 @@ public class Game
 	}
 	
 }
+
 
 

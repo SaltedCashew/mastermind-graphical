@@ -1,9 +1,6 @@
 package assignment3;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -68,13 +65,7 @@ public class Options
 		return numTurns;
 	}
 	
-	/**
-	 * Decrements the number of turns in the instance by one
-	 * Returns nothing
-	 **/
-	public void takeTurn(){
-		numTurns--;
-	}
+
 	
 	/**
 	 * Returns the boolean value on whether the secret solution should be shown or not
@@ -121,7 +112,6 @@ public class Options
 	
 	private int getColors()
 	{ 
-		boolean repeat = true;
 		int size = 6; //default
 		
 		try
@@ -133,7 +123,6 @@ public class Options
 					size = Integer.parseInt(input2);
 					if(size < 1 || size > 10){ 
 						size = 6;}
-					repeat = false;
 				}
 		}
 		catch(InputMismatchException e) { } //catch the exception so it doesn't go elsewhere, causes things to just keep going
