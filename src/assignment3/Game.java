@@ -6,6 +6,8 @@
 package assignment3;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 /**
  * Creates and runs the Mastermind game instance
@@ -42,8 +44,7 @@ public class Game
 	 * Runs the Mastermind game for the implicit game instance
 	 **/
 	public void runGame()
-	{
-		System.out.println("Generating Secret Code...\n"); //change later
+	{	JOptionPane.showMessageDialog(null, "Generating Secret Code...");
 		Code solutionCode =  new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		Code playerGuess = new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		solutionCode.generateSolution();
@@ -51,25 +52,27 @@ public class Game
 		
 		final int NO_MORE_TURNS = 0;
 		while(gameOver==false && gameOptions.turns() > NO_MORE_TURNS)
-		{
-			System.out.println("You have " + gameOptions.turns() + " guess(es) remaining.");	
+		{	StringBuilder turnPrompt = new StringBuilder();
+			turnPrompt.append("<html>You have " + gameOptions.turns() + " guess(es) remaining.<br>");
 			if (showSol==true || gameOptions.spoilVal()==true)
 			{ 
-				System.out.println("The solution is: " + solutionCode.codeToString() );
+				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");
 			}
 			
-			if(playerGuess.getNextGuess())
+			if(playerGuess.getNextGuess(turnPrompt))
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.
 				displayHistory();
 			}
 			else
 			{
-				System.out.println("Your guess is: "  + playerGuess.codeToString());
+				StringBuilder guessResponse = new StringBuilder();
+				guessResponse.append("<html>Your guess is: " + playerGuess.codeToString() + "<br>");
 				//now we need to compare
 				Feedback turnResult = new Feedback(); 
 				turnResult = solutionCode.compareCodes(playerGuess);
-				System.out.println("The Number of Black Pegs : " + turnResult.getBlackPegNum());
-				System.out.println("The Number of White Pegs : " + turnResult.getWhitePegNum());
+				guessResponse.append("The number of Black Pegs : " + turnResult.getBlackPegNum() + "<br>");
+				guessResponse.append("The Number of White Pegs :  " + turnResult.getWhitePegNum() + "<br>");
+				JOptionPane.showMessageDialog(null, guessResponse);
 				codeHistory.add(playerGuess.codeToString());
 				feedbackHist.add(turnResult.toString()); //change array list to strings later, convert then store as strings like codehistory?
 				gameOptions.takeTurn();
@@ -78,9 +81,6 @@ public class Game
 					gameOver = true;
 					displayWinMsg();
 				}
-				
-				System.out.println(" ");
-				
 				playerGuess.resetCode(); //erases the players guessed code for a clean start
 			}
 		}
@@ -96,31 +96,26 @@ public class Game
 	{
 		if(codeHistory.size() <= 0)
 		{
-			System.out.println("\nNo History to show!\n");
+			JOptionPane.showMessageDialog(null, "No History to show!");
 		}
 		else
-		{	
-			System.out.println("\nGame History:");
-			System.out.println("Turn Number:\t\tGuess:\t\tResult:");
+		{	StringBuilder hist = new StringBuilder("<html>Turn Number: &emsp &emsp Guess: &emsp &emsp Result:<br><br>");
 			for(int index = 0; index < codeHistory.size(); index++)
 			{
-				System.out.println("" + (index + 1) + "\t\t\t" + (codeHistory.get(index)) + "\t\t" + (feedbackHist.get(index)));
+				hist.append(" &emsp &emsp " + (index + 1) + "  &nbsp &nbsp &emsp &emsp &emsp &emsp " + (codeHistory.get(index)) + " &emsp &emsp " + (feedbackHist.get(index)) + "<br>");
 			}
-			System.out.println(" ");
+			JOptionPane.showMessageDialog(null, hist, "Game History", 0);
 		}
 	}
 	
 	private void displayWinMsg()
-	{
-		System.out.println(" ");
-		System.out.println("You guessed the secret code! You Win! Do you want to play again?");
-		
+	{  
+		JOptionPane.showMessageDialog(null, "You guessed the secret code! You win!! Do you want to play again?");
 	}
 	
 	private void displayLoseMsg(Code solution)
 	{
-		System.out.println("You failed to guess the secret code! The answer was: " + (solution.codeToString()) + ". You Lose!");
-		System.out.println(" ");
+		JOptionPane.showMessageDialog(null, "You failed to guess the secret code! The answer was: " + solution.codeToString() + ". You Lose!");
 	}
 	
 }

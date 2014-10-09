@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 /**
  * Controls the options for the Mastermind game. 
  * Options currently allow for changing the code size, the number of different colors used, and the number of turns.
@@ -30,13 +32,11 @@ public class Options
 	 * Requests option settings from the user and sets user determined options within that instance 
 	 **/
 	public void SetOptions(){
-		Scanner inputScanner = new Scanner(System.in);
-		System.out.println("\nPress Y to edit game settings. Press any other button to skip:");
-		char c = inputScanner.next().charAt(0);
-		if(c=='y' || c=='Y')
+		int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the game settings?", "Settings", JOptionPane.YES_NO_OPTION);
+		if(input ==JOptionPane.YES_OPTION)
 		{  
 			codeSize = getCodeSize();
-			numColors = getColors();
+			numColors = this.getColors();
 			numTurns = getTurns();
 			reveal = spoilSecret();
 		}
@@ -94,34 +94,21 @@ public class Options
 	
 	private int getCodeSize()
 	{ 
-		boolean repeat = true;
 		int size = 4; //default
 		
 		try
 		{
-			Scanner input = new Scanner(System.in);
-			while(repeat == true){
-				System.out.println("Would you like to edit the code size? (Y/N)");	
-				char c = input.next().charAt(0);			
-				if(c=='y' || c=='Y')
-				{  
-					System.out.println("Enter the reasonable, postive size code (otherwise, default will be used) ");
-					size = input.nextInt();
-					if(size < 1){ size = 4;}
-					repeat = false;
-				}
-				else if (c=='n' || c=='N')
-				{
-					repeat = false;
-				}
-				else
-				{
-					System.out.println("(Y/N) please");
-				}
+			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the code size?", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
+			if(input==JOptionPane.YES_OPTION)
+			{  
+				String sizeIn = JOptionPane.showInputDialog(null, "Enter the reasonable, positive code size (otherwise, default will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
+				size = Integer.parseInt(sizeIn);
+				if(size < 1){ size = 4;}
 			}
 		}
 		catch(InputMismatchException e)	{	} //catch the exception so it doesn't go elsewhere, causes things to just keep going
-		System.out.println("Now using a code size of " + size + "\n");		
+		catch(NumberFormatException ex) { }
+		JOptionPane.showMessageDialog(null, "Now using a code size of " + size);	
 		return size;
 	}
 
@@ -139,49 +126,25 @@ public class Options
 		
 		try
 		{
-			Scanner input = new Scanner(System.in);
-			while(repeat == true){
-				System.out.println("Would you like to edit the number of colors? (Y/N)");	
-				char c = input.next().charAt(0);			
-				if(c=='y' || c=='Y')
+			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
+				if(input == JOptionPane.YES_OPTION )
 				{  
-					System.out.println("Please enter a number between 1 and 10 (otherwise, 6 will be used) ");
-					size = input.nextInt();
+					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and 10 (otherwise, 6 will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
+					size = Integer.parseInt(input2);
 					if(size < 1 || size > 10){ 
 						size = 6;}
 					repeat = false;
 				}
-				else if (c=='n' || c=='N')
-				{
-					repeat = false;
-				}
-				else
-				{
-					System.out.println("(Y/N) please");
-				}
-			}
 		}
 		catch(InputMismatchException e) { } //catch the exception so it doesn't go elsewhere, causes things to just keep going
-			
-		System.out.println("Now using " + size + " different colors\n");	
-		ArrayList<String> colorList = new ArrayList<String>(10);
-		colorList.add("B for Blue");
-		colorList.add("G for Green");
-		colorList.add("O for Orange");
-		colorList.add("R for Red");
-		colorList.add("Y for Yellow");
-		colorList.add("P for Purple");
-		colorList.add("K for Black");
-		colorList.add("C for Cyan");
-		colorList.add("M for Maroon");
-		colorList.add("V for Violet");
+		catch(NumberFormatException ex) { }
 		
-		System.out.println("The colors are:");	
-		for (int index = 0; index < size; index++)
-		{
-			System.out.println(colorList.get(index));	
-		}	
-		System.out.println("\n");
+		StringBuilder msg = new StringBuilder("<html>Now using " + size + " different colors<br>");
+		msg.append("The colors are:<br>");
+		for(int k = 0; k<size; k++){
+			msg.append(" " + Pegs.GetColors(k) + "<br>");
+		}
+		JOptionPane.showMessageDialog(null, msg);
 		return size;
 	}
 
@@ -194,34 +157,22 @@ public class Options
 	
 	private int getTurns()
 	{ 
-		boolean repeat = true;
 		int size = 12; //default
 		
 		try
-		{
-			Scanner input = new Scanner(System.in);
-			while(repeat == true){
-				System.out.println("Would you like to edit the number of turns? (Y/N)");	
-				char c = input.next().charAt(0);			
-				if(c=='y' || c=='Y')
+		{	
+			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of turns?", "Settings - Turns", JOptionPane.YES_NO_OPTION);
+			if(input == JOptionPane.YES_OPTION)
 				{  
-					System.out.println("Enter a reasonable, postive number of turns (otherwise, default will be used) ");
-					size = input.nextInt();
+					String turnIn = JOptionPane.showInputDialog(null, "Enter a reasonable, positive number of turns (otherwise, default will be used", "Settings - Turns");
+					
+					size = Integer.parseInt(turnIn);
 					if(size < 1){ size = 12;} //12 is the default value;
-					repeat = false;
 				}
-				else if (c=='n' || c=='N')
-				{
-					repeat = false;
-				}
-				else
-				{
-					System.out.println("(Y/N) please");
-				}
-			}
 		}
 		catch(InputMismatchException e)	{ } //catch the exception so it doesn't go elsewhere, causes things to just keep going
-		System.out.println("The number of turns is now " + size + "\n");		
+		catch(NumberFormatException ex) { }
+		JOptionPane.showMessageDialog(null, "The number of turns is now " + size);
 		return size;
 	}
 	
@@ -233,29 +184,9 @@ public class Options
 	 */
 	private static boolean spoilSecret()
 	{
-		boolean repeat = true;
-		boolean spoil = false;
-		
-		Scanner input = new Scanner(System.in);
-		while(repeat==true){
-			System.out.println("Show the Secret Code? (Y/N)");	
-			char c = input.next().charAt(0);			
-			if(c=='y' || c=='Y')
-			{  
-				spoil = true;
-				repeat = false;
-			}
-			else if (c=='n' || c=='N')
-			{
-				spoil = false;
-				repeat = false;
-			}
-			else
-			{
-				System.out.println("(Y/N) please");
-			}
-		}
-		return spoil;
+		int input = JOptionPane.showConfirmDialog(null, "Show the secret code", "Settings - Spoilers", JOptionPane.YES_NO_OPTION);
+		if(input==JOptionPane.YES_OPTION)	{ return true;	}
+		return false;
 	}
 	
 	

@@ -2,6 +2,8 @@ package assignment3;
 
 import java.util.InputMismatchException;
 
+import javax.swing.JOptionPane;
+
 public class IllegalGuessException extends InputMismatchException
 {
 
@@ -16,6 +18,7 @@ public class IllegalGuessException extends InputMismatchException
 
 	public IllegalGuessException(String arg0)
 	{
+		JOptionPane.showMessageDialog(null, arg0);
 		System.out.println("\n" + arg0);
 	}
 

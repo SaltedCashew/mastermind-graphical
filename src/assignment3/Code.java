@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 /**
  * Class for running the Mastermind program. Starts the game and prompts with instructions
  * Gets initial game variables from the player, such as if the secret code should be shown or hidden. 
@@ -62,30 +64,28 @@ public class Code
 	 * @throws InputMismatchException if input not equal to Code size or if guess contains invalid colors
 	 * 
 	 **/	
-	public boolean getNextGuess()
+	public boolean getNextGuess(StringBuilder prompt)
 	{
-		Scanner input = new Scanner(System.in);
-		String tempInput = new String(); //using this as the next token
 		String c = new String() ;  //c will be a character from the tempInput token
 		boolean validEntry = true;
+		prompt.append("<html>Please enter your guess<br>");
 		do
 		{
 			try
 			{
 				validEntry=true;
-				System.out.println("Please enter your guess: ");
-				//if(!input.hasNextLine()){ throw new InputMismatchException();}
-				tempInput = input.next();
-				if((tempInput.equals("History")) || (tempInput.equals("history")))
+				
+				String inGuess = JOptionPane.showInputDialog(null, prompt, "", JOptionPane.YES_NO_OPTION);
+				if((inGuess.equals("History")) || (inGuess.equals("history")))
 				{
 					return true;
 				}
-				if(tempInput.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");} //throw exception if guess not equal to code size
+				if(inGuess.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");} //throw exception if guess not equal to code size
 				for(int i=0; i<numPegs;i++)
 				{
-					c = tempInput.substring(i, i+1);
+					c = inGuess.substring(i, i+1);
 					
-					code.add(new Pegs(c));
+					code.add(new Pegs(c, numColors));
 				}
 			}
 			catch(InputMismatchException ex)
