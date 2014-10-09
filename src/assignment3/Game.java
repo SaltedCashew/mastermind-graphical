@@ -20,6 +20,7 @@ public class Game
 	Game(boolean showCode) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
 		gameOptions = new Options(); 
+		gameOptions.SetOptions();
 		if (showCode == true){showSol = true;}
 		else {showSol = false;} //using showSol as a hard overwrite for showing the solution
 		gameBoard = new Board(gameOptions.numTurns);
@@ -47,7 +48,7 @@ public class Game
 		final int NO_MORE_TURNS = 0;
 		while(gameOver==false && gameBoard.turnsLeft() > NO_MORE_TURNS)
 		{	StringBuilder turnPrompt = new StringBuilder();
-			turnPrompt.append("<html>You have " + gameOptions.turns() + " guess(es) remaining.<br>");
+			turnPrompt.append("<html>You have " + gameBoard.turnsLeft() + " guess(es) remaining.<br>");
 			if (showSol==true || gameOptions.spoilVal()==true)
 			{ 
 				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");

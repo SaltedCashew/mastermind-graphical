@@ -34,7 +34,7 @@ public class Options
 		{  
 			codeSize = getCodeSize();
 			numColors = this.getColors();
-			numTurns = getTurns();
+			numTurns = this.getTurns();
 			reveal = spoilSecret();
 		}
 	}
