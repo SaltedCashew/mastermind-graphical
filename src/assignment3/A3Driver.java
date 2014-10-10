@@ -25,7 +25,7 @@ public class A3Driver {
 			{
 				int choice = JOptionPane.showConfirmDialog(null, "Are you ready to play? (Y/N)", "MasterMind", JOptionPane.YES_NO_OPTION);
 				if(choice == JOptionPane.YES_OPTION){
-					Game masterMind = new Game(true); //boolean to override game option and always show solution
+					Game masterMind = new Game(false); //boolean to override game option and always show solution
 					masterMind.runGame();
 				}	
 				else 

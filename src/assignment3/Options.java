@@ -119,7 +119,7 @@ public class Options
 			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
 				if(input == JOptionPane.YES_OPTION )
 				{  
-					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.MaxColors() + " (otherwise, 6 will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
+					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.MaxColors() + " (otherwise, 6 will be used)", "Settings", JOptionPane.YES_NO_OPTION);
 					size = Integer.parseInt(input2);
 					if(size < 1 || size > Colors.MaxColors()){ 
 						size = 6;}
@@ -153,7 +153,7 @@ public class Options
 			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of turns?", "Settings - Turns", JOptionPane.YES_NO_OPTION);
 			if(input == JOptionPane.YES_OPTION)
 				{  
-					String turnIn = JOptionPane.showInputDialog(null, "Enter a reasonable, positive number of turns (otherwise, default will be used", "Settings - Turns");
+					String turnIn = JOptionPane.showInputDialog(null, "Enter a reasonable, positive number of turns (otherwise, default will be used", "Settings - Turns", JOptionPane.YES_NO_OPTION);
 					
 					size = Integer.parseInt(turnIn);
 					if(size < 1){ size = 12;} //12 is the default value;

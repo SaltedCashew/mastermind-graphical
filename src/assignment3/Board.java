@@ -57,7 +57,6 @@ public class Board
 	 **/
 	public void takeTurn(){
 		turnsRemaining--;
-		System.out.println(turnsRemaining);
 	}
 	
 	/**

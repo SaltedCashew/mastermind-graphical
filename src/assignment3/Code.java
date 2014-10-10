@@ -132,12 +132,14 @@ public class Code
 			if(p.Equals(solCopy.get(k))) //if both pegs are equal, but positions are not
 			{
 				turnResult.addWhitePeg();
-				solCopy.remove(p);
+				solCopy.remove(k);
 				break;
 			}
 	
 		}
 		return turnResult;
+		
+		
 	}
 	
 	/**
