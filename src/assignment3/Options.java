@@ -31,7 +31,7 @@ public class Options
 	 **/
 	public void setOptions(){
 		int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the game settings?", "Settings", JOptionPane.YES_NO_OPTION);
-		if(input ==JOptionPane.YES_OPTION)
+		if(input == JOptionPane.YES_OPTION)
 		{  
 			codeSize = getCodeSize();
 			numColors = this.getColors();

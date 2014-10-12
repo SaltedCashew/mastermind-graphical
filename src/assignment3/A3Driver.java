@@ -39,6 +39,7 @@ public class A3Driver {
 		catch( NullPointerException np){
 			JOptionPane.showMessageDialog(null, "Something's gone wrong.   Goodbye");
 		}
+		System.exit(0);
 	}	
 
 	

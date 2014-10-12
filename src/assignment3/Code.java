@@ -74,6 +74,7 @@ public class Code
 		String c = new String() ;  //c will be a character from the tempInput token
 		boolean validEntry = true;
 		prompt.append("<html>Please enter your guess<br>");
+		prompt.append("Note: You may also enter history or help<br>");
 		do
 		{
 			try
@@ -102,6 +103,17 @@ public class Code
 			{
 				resetCode();
 				validEntry=false;
+			}
+			catch(NullPointerException np)
+			{
+				resetCode();
+				int input = JOptionPane.showConfirmDialog(null, "Would you like to end the game?");
+				if (input == JOptionPane.YES_OPTION)
+				{ 
+					JOptionPane.showMessageDialog(null, "Shutting down....\n Goodbye");
+					System.exit(0);
+				}
+				validEntry = false;
 			}
 
 		}while(validEntry==false);

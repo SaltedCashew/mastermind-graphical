@@ -41,7 +41,7 @@ public class Game
 	 * Runs the Mastermind game for the implicit game instance
 	 **/
 	public void runGame()
-	{	JOptionPane.showMessageDialog(null, "Generating Secret Code...");
+	{	JOptionPane.showMessageDialog(null, "Generating Secret Code...\n Press OK to continue");
 		Code solutionCode =  new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		Code playerGuess = new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		solutionCode.generateSolution();
