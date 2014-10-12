@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 /**
  * Creates and runs the Mastermind game instance
  * @author Brad Gray and Jake George, EE422C
+ * @version 2
  **/
 public class Game
 {  
@@ -20,19 +21,20 @@ public class Game
 	Game(boolean showCode) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
 		gameOptions = new Options(); 
-		gameOptions.SetOptions();
+		gameOptions.setOptions();
 		if (showCode == true){showSol = true;}
 		else {showSol = false;} //using showSol as a hard overwrite for showing the solution
-		gameBoard = new Board(gameOptions.numTurns);
+		gameBoard = new Board(gameOptions.gameTurns(), gameOptions.gameColors());
 	}
 	
 	
 	/**
 	 * Promts the user for desired game options
+	 * Stores responses as the game instance options
 	 **/
 	
 	public void setOptions(){
-		gameOptions.SetOptions();
+		gameOptions.setOptions();
 	}
 	
 	/**
@@ -49,14 +51,16 @@ public class Game
 		while(gameOver==false && gameBoard.turnsLeft() > NO_MORE_TURNS)
 		{	StringBuilder turnPrompt = new StringBuilder();
 			turnPrompt.append("<html>You have " + gameBoard.turnsLeft() + " guess(es) remaining.<br>");
+			turnPrompt.append("The code size is " + gameOptions.sizeOfCode() + ".<br><br>");
 			if (showSol==true || gameOptions.spoilVal()==true)
 			{ 
 				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");
 			}
-			boolean displayHist = playerGuess.getNextGuess(turnPrompt); //returns true if "History" or false if a valid guess
-			if(displayHist)
+			boolean request = playerGuess.getNextGuess(turnPrompt); //returns true if "History" or false if a valid guess
+			if(request)
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.
-				gameBoard.displayHistory();
+				if(playerGuess.getRequest().equals("HISTORY_REQUEST")){	gameBoard.displayHistory(); }
+				else if (playerGuess.getRequest().equals("HELP_REQUEST")){	gameBoard.displayHelp(); }
 			}
 			else if(gameBoard.InHistory(playerGuess.codeToString()))
 			{

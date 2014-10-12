@@ -7,14 +7,15 @@ import javax.swing.JOptionPane;
  * Controls the options for the Mastermind game. 
  * Options currently allow for changing the code size, the number of different colors used, and the number of turns.
  * @author Brad Gray, EE422C
+ * @version 1
  **/
 
 public class Options
 {
-	int codeSize;
-	int numColors;
-	int numTurns;
-	boolean reveal;
+	private int codeSize;
+	private int numColors;
+	private int numTurns;
+	private boolean reveal;
 	
 	Options(){
 		codeSize = 4;
@@ -28,7 +29,7 @@ public class Options
 	 * Implicit parameter of a options instance.
 	 * Requests option settings from the user and sets user determined options within that instance 
 	 **/
-	public void SetOptions(){
+	public void setOptions(){
 		int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the game settings?", "Settings", JOptionPane.YES_NO_OPTION);
 		if(input ==JOptionPane.YES_OPTION)
 		{  
@@ -42,13 +43,22 @@ public class Options
 	
 	/**
 	 * Returns the size of the code within the options instance
+	 * @return codeSize 
 	 **/
 	public int sizeOfCode(){
 		return codeSize;
 	}
 	
 	/**
-	 * Returns the number of colors being used in the code
+	 * Returns the size of the code within the options instance
+	 * @return numTurns
+	 **/
+	public int gameTurns(){
+		return numTurns;
+	}
+	
+	/**
+	 * @return int The number of colors being used in the code
 	 **/
 	public int colorNum(){
 		return numColors;
@@ -119,9 +129,9 @@ public class Options
 			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
 				if(input == JOptionPane.YES_OPTION )
 				{  
-					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.MaxColors() + " (otherwise, 6 will be used)", "Settings", JOptionPane.YES_NO_OPTION);
+					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.maxColors() + " (otherwise, 6 will be used)", "Settings", JOptionPane.YES_NO_OPTION);
 					size = Integer.parseInt(input2);
-					if(size < 1 || size > Colors.MaxColors()){ 
+					if(size < 1 || size > Colors.maxColors()){ 
 						size = 6;}
 				}
 		}
@@ -131,7 +141,7 @@ public class Options
 		StringBuilder msg = new StringBuilder("<html>Now using " + size + " different colors<br>");
 		msg.append("The colors are:<br>");
 		for(int k = 0; k<size; k++){
-			msg.append(" " + Colors.GetColor(k).toString() + "<br>");
+			msg.append(" " + Colors.getColor(k).toString() + "<br>");
 		}
 		JOptionPane.showMessageDialog(null, msg);
 		return size;
@@ -176,6 +186,14 @@ public class Options
 		int input = JOptionPane.showConfirmDialog(null, "Show the secret code", "Settings - Spoilers", JOptionPane.YES_NO_OPTION);
 		if(input==JOptionPane.YES_OPTION)	{ return true;	}
 		return false;
+	}
+
+	 /**
+	 * Returns the number of colors to be used as entered by the player (or as default)
+	 * @return: numColors The selected number of colors
+	 */
+	public int gameColors() {
+		return numColors;
 	}
 	
 	

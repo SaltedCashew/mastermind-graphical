@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * Creates a new game instance and runs the game
  * Color values can be changed in the constructor, up to a max of 26 
  * @author Brad Gray and Jake George, EE422C
+ * @version 2
  **/
 
 public class Code
@@ -23,7 +24,13 @@ public class Code
 	private int numPegs; //size of solution
 	private ArrayList<Pegs> code;
 	private int numColors; 
+	private String playerRequest; //allows for input requests: 
+
 	
+	/**Code constructor with size and colors
+	 * @param int The desired size of the code
+	 * @param int The desired number of colors to use in the code 
+	 **/
 	Code(int codeSize, int colors) //
 	{  
 		numColors = colors;
@@ -58,9 +65,9 @@ public class Code
 	}
 	
 	/**Asks for and gets next guess from player. Stores guess in implicit Code parameter
-	 * @return True if next guess is a request for guess history. False if guess is valid code guess
+	 * @param prompt StringBuilder; Allows for passing an input prompt to add to the JOptionPane display text
+	 * @return boolean; If next guess is a request for guess history. False if guess is valid code guess
 	 * @throws InputMismatchException if input not equal to Code size or if guess contains invalid colors
-	 * 
 	 **/	
 	public boolean getNextGuess(StringBuilder prompt)
 	{
@@ -76,6 +83,12 @@ public class Code
 				String inGuess = JOptionPane.showInputDialog(null, prompt, "", JOptionPane.YES_NO_OPTION);
 				if((inGuess.equals("History")) || (inGuess.equals("history")))
 				{
+					playerRequest = new String ("HISTORY_REQUEST");
+					return true;
+				}
+				else if((inGuess.equals("Help")) || (inGuess.equals("help")))
+				{
+					playerRequest = new String ("HELP_REQUEST");
 					return true;
 				}
 				if(inGuess.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");}
@@ -93,6 +106,14 @@ public class Code
 
 		}while(validEntry==false);
 		return false;
+	}
+	
+	/**
+	 * Returns the player's request as a String.
+	 * @return playerRequest Will be HISTORY_REQUEST or HELP_REQUEST
+	 **/
+	public String getRequest(){
+		return playerRequest;
 	}
 	
 	/**
@@ -117,7 +138,7 @@ public class Code
 		int codeSize = numPegs;
 		for(int i=0; i<codeSize; i++)
 		{ 
-			if(solCopy.get(i).Equals(playerCopy.get(i))) //if both pegs are equal
+			if(solCopy.get(i).equals(playerCopy.get(i))) //if both pegs are equal
 			{ 
 				turnResult.addBlackPeg();
 				solCopy.remove(i); //remove from the copy, it's already been included in the feedback
@@ -129,7 +150,7 @@ public class Code
 		
 		for(Pegs p : playerCopy){
 			for(int k = 0; k < solCopy.size(); k++)
-			if(p.Equals(solCopy.get(k))) //if both pegs are equal, but positions are not
+			if(p.equals(solCopy.get(k))) //if both pegs are equal, but positions are not
 			{
 				turnResult.addWhitePeg();
 				solCopy.remove(k);

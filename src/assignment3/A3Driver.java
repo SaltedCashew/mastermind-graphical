@@ -9,10 +9,11 @@ package assignment3;
 import javax.swing.*;
 
 /**
- * Main driver for running the Mastermind program (Assignment 2). Starts the game and prompts with instructions
+ * Main driver for running the Mastermind program (Assignment 3). Starts the game and prompts with instructions
  * Gets initial game variables from the player, such as if the secret code should be shown or hidden
  * Creates a new game instance and runs the game 
  * @author Brad Gray and Jake George, EE422C
+ * @version 2
  **/
 public class A3Driver {
 	
