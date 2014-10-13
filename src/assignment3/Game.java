@@ -77,8 +77,8 @@ public class Game
 				guessResponse.append("The number of Black Pegs : " + turnResult.getBlackPegNum() + "<br>");
 				guessResponse.append("The Number of White Pegs :  " + turnResult.getWhitePegNum() + "<br>");
 				JOptionPane.showMessageDialog(null, guessResponse);
-				gameBoard.addToCodeHistory(playerGuess.codeToString());
-				gameBoard.addToFeedbackHistory(turnResult.toString());
+				gameBoard.addToCodeHistory(playerGuess);
+				gameBoard.addToFeedbackHistory(turnResult);
 				gameBoard.takeTurn();
 				if(turnResult.getBlackPegNum() == solutionCode.numberOfPegs())
 				{

@@ -16,11 +16,14 @@ public class Options
 	private int numColors;
 	private int numTurns;
 	private boolean reveal;
+	final int CODE_SIZE_DEFAULT = 5;
+	final int NUM_COLORS_DEFAULT = 7;
+	final int NUM_TURNS_DEFAULT = 15;
 	
 	Options(){
-		codeSize = 4;
-		numColors = 6;
-		numTurns = 12;
+		codeSize = CODE_SIZE_DEFAULT;
+		numColors = NUM_COLORS_DEFAULT;
+		numTurns = NUM_TURNS_DEFAULT;
 		reveal = false;
 	}
 	
@@ -95,7 +98,7 @@ public class Options
 	
 	private int getCodeSize()
 	{ 
-		int size = 4; //default
+		int size = CODE_SIZE_DEFAULT; //default
 		
 		try
 		{
@@ -104,7 +107,7 @@ public class Options
 			{  
 				String sizeIn = JOptionPane.showInputDialog(null, "Enter the reasonable, positive code size (otherwise, default will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
 				size = Integer.parseInt(sizeIn);
-				if(size < 1){ size = 4;}
+				if(size < 1){ size = CODE_SIZE_DEFAULT;}
 			}
 		}
 		catch(InputMismatchException e)	{	} //catch the exception so it doesn't go elsewhere, causes things to just keep going
@@ -122,17 +125,17 @@ public class Options
 	
 	private int getColors()
 	{ 
-		int size = 6; //default
+		int size = NUM_COLORS_DEFAULT; //default
 		
 		try
 		{
 			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
 				if(input == JOptionPane.YES_OPTION )
 				{  
-					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.maxColors() + " (otherwise, 6 will be used)", "Settings", JOptionPane.YES_NO_OPTION);
+					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.maxColors() + " (otherwise, default will be used)", "Settings", JOptionPane.YES_NO_OPTION);
 					size = Integer.parseInt(input2);
 					if(size < 1 || size > Colors.maxColors()){ 
-						size = 6;}
+						size = NUM_COLORS_DEFAULT;}
 				}
 		}
 		catch(InputMismatchException e) { } //catch the exception so it doesn't go elsewhere, causes things to just keep going
@@ -156,7 +159,7 @@ public class Options
 	
 	private int getTurns()
 	{ 
-		int size = 12; //default
+		int size = NUM_TURNS_DEFAULT; 
 		
 		try
 		{	
@@ -166,7 +169,7 @@ public class Options
 					String turnIn = JOptionPane.showInputDialog(null, "Enter a reasonable, positive number of turns (otherwise, default will be used", "Settings - Turns", JOptionPane.YES_NO_OPTION);
 					
 					size = Integer.parseInt(turnIn);
-					if(size < 1){ size = 12;} //12 is the default value;
+					if(size < 1){ size = NUM_TURNS_DEFAULT;} 
 				}
 		}
 		catch(InputMismatchException e)	{ } //catch the exception so it doesn't go elsewhere, causes things to just keep going

@@ -9,7 +9,6 @@ package assignment3;
 public class Pegs
 {
 	private Colors pegColor;
-	final int DEFAULT_COLOR_NUM = 6;
 	
 	/**
 	 * Creates a peg with a random color selected from the 
@@ -17,7 +16,7 @@ public class Pegs
 	 **/
 	Pegs()
 	{	
-		pegColor = new Colors(DEFAULT_COLOR_NUM);
+		pegColor = new Colors();
 	}
 	
 	/**

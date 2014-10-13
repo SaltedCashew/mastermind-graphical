@@ -36,6 +36,22 @@ public class Code
 		numColors = colors;
 		numPegs = codeSize;
 		code = new ArrayList<Pegs>();
+		playerRequest = new String();
+	}
+	
+	/**Code constructor with Code parameter
+	 * Creates a new Code object as a deep copy of the passed Code object
+	 * @param orig The existing code object
+	 **/
+	Code(Code orig) //
+	{  
+		numColors = orig.numColors;
+		numPegs = orig.numPegs;
+		code = new ArrayList<Pegs>();
+		for(Pegs p : orig.code){
+			code.add(p);
+		}
+		playerRequest = new String(orig.playerRequest);
 	}
  
 	/**Generates the computer's secret code. Works for any size code or number of colors.<br>
@@ -75,6 +91,7 @@ public class Code
 		boolean validEntry = true;
 		prompt.append("<html>Please enter your guess<br>");
 		prompt.append("Note: You may also enter history or help<br>");
+		
 		do
 		{
 			try

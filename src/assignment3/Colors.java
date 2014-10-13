@@ -16,7 +16,6 @@ public class Colors
 	private String colorName;
 	private String colorInit;
 	final static int MAX_COLORS = 10;
-	final static int COLOR_NAME = 6;
 
 	/**
 	 * Basic constructor. 
@@ -136,9 +135,9 @@ public class Colors
 		temp.add("Red"); //red
 		temp.add("Yellow"); //yellow
 		temp.add("Purple"); //purple
+		temp.add("Maroon"); //maroon
 		temp.add("Black"); //black
 		temp.add("Cyan"); //cyan
-		temp.add("Maroon"); //maroon
 		temp.add("Violet"); //violet
 		ArrayList<String> temp2 = new ArrayList<String>();
 		temp2.add("B"); //blue
@@ -147,9 +146,9 @@ public class Colors
 		temp2.add("R"); //red
 		temp2.add("Y"); //yellow
 		temp2.add("P"); //purple
+		temp2.add("M"); //maroon
 		temp2.add("K"); //black
 		temp2.add("C"); //cyan
-		temp2.add("M"); //maroon
 		temp2.add("V"); //violet
 		ArrayList<Colors> colorList = new ArrayList<Colors>();
 		for(int k = 0; k < temp.size(); k++){

@@ -15,9 +15,9 @@ public class Board
 {
 	
 	private int turnsRemaining;
-	final int DEFAULT_TURNS = 12;
-	private ArrayList<String> codeHistory;  //stores the codes, but not the feedback
-	private ArrayList<String> feedbackHistory; //store the feedback history
+	final int DEFAULT_TURNS = 15;
+	private ArrayList<Code> codeHistory;  //stores the codes, but not the feedback
+	private ArrayList<Feedback> feedbackHistory; //store the feedback history
 	private ArrayList<Colors> availableColors;
 	
 	/**
@@ -26,8 +26,8 @@ public class Board
 	 **/
 	public Board()
 	{
-		codeHistory = new ArrayList<String>();
-		feedbackHistory = new ArrayList<String>();
+		codeHistory = new ArrayList<Code>();
+		feedbackHistory = new ArrayList<Feedback>();
 		turnsRemaining = DEFAULT_TURNS;
 		availableColors = new ArrayList<Colors>();
 		
@@ -43,8 +43,8 @@ public class Board
 	 **/
 	public Board(int turns, int numColors)
 	{
-		codeHistory = new ArrayList<String>();
-		feedbackHistory = new ArrayList<String>();
+		codeHistory = new ArrayList<Code>();
+		feedbackHistory = new ArrayList<Feedback>();
 		turnsRemaining = turns;
 		availableColors = new ArrayList<Colors>();
 		for(int k = 0; k < numColors; k++){
@@ -58,16 +58,16 @@ public class Board
 	 * to the code history.
 	 * @param input The code as a string.
 	 **/
-	public void addToCodeHistory(String input){
-		codeHistory.add(input);
+	public void addToCodeHistory(Code input){
+		codeHistory.add(new Code(input));
 	}
 	
 	/**
-	 * Takes the passed string parameter and adds that 
+	 * Takes the passed Feedback parameter and adds that 
 	 * to the feedback history.
-	 * @param input The feedback results as a string.
+	 * @param input The feedback results as a Feedback object.
 	 **/
-	public void addToFeedbackHistory(String input){
+	public void addToFeedbackHistory(Feedback input){
 		feedbackHistory.add(input);
 	}
 	
@@ -84,8 +84,17 @@ public class Board
 		else
 		{	StringBuilder hist = new StringBuilder("<html>Turn Number: &emsp &emsp Guess: &emsp &emsp Result:<br><br>");
 			for(int index = 0; index < codeHistory.size(); index++)
-			{
-				hist.append(" &emsp &emsp " + (index + 1) + "  &nbsp &nbsp &emsp &emsp &emsp &emsp " + (codeHistory.get(index)) + " &emsp &emsp " + (feedbackHistory.get(index)) + "<br>");
+			{ 
+				if(index < 9) //different formatting for turns in the 2 digits
+				{
+				hist.append(" &emsp &emsp " + (index + 1) + "  &nbsp &nbsp &emsp &emsp &emsp &emsp " 
+						+ (codeHistory.get(index).codeToString()) + " &emsp &emsp " + (feedbackHistory.get(index).toString()) + "<br>");
+				}
+				else if (index <= 9) //different formatting for turns in the 2 digits
+				{
+					hist.append(" &emsp &emsp " + (index + 1) + "  &nbsp &emsp &emsp &emsp &emsp " 
+							+ (codeHistory.get(index).codeToString()) + " &emsp &emsp " + (feedbackHistory.get(index).toString()) + "<br>");	
+				}
 			}
 			JOptionPane.showMessageDialog(null, hist, "Game History", 0);
 		}
