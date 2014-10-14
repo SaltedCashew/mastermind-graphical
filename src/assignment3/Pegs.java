@@ -1,8 +1,7 @@
 package assignment3;
 	
 /**
-	* Creates a peg class
-	* Stores the color of the peg and the default number of colors
+	* Peg class for storing the peg color
 	* @author Brad Gray, EE422C
 	* @version 1
 	**/
@@ -11,8 +10,7 @@ public class Pegs
 	private Colors pegColor;
 	
 	/**
-	 * Creates a peg with a random color selected from the 
-	 * default number of colors
+	 * Creates a new, empty peg
 	 **/
 	Pegs()
 	{	
@@ -43,8 +41,8 @@ public class Pegs
 	}
 	
 	/**
-	 * Creates a peg with a random color selected from only
-	 * the desired number of colors as determined by the passed int parameter
+	 * Returns the peg color as a String.
+	 * String will be the initial/abbreviation of the color only
 	 * @return String: The abbreviation of the peg color as a string
 	 **/
 	public String toString()
@@ -53,8 +51,7 @@ public class Pegs
 	}
 	
 	/**
-	 * Creates a peg with a random color selected from only
-	 * the desired number of colors as determined by the passed int parameter
+	 * Checks the equality of two peg objects
 	 * @param test: Pegs object to test against the implicit parameter
 	 * @return boolean: True if the two peg objects are equal. False otherwise
 	 **/

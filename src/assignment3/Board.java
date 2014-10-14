@@ -15,10 +15,10 @@ public class Board
 {
 	
 	private int turnsRemaining;
-	final int DEFAULT_TURNS = 15;
 	private ArrayList<Code> codeHistory;  //stores the codes, but not the feedback
 	private ArrayList<Feedback> feedbackHistory; //store the feedback history
 	private ArrayList<Colors> availableColors;
+	private final int DEFAULT_TURNS = 15;
 	
 	/**
 	 * Creates a board instance with empty code and feedback histories
@@ -32,8 +32,6 @@ public class Board
 		availableColors = new ArrayList<Colors>();
 		
 	}
-	
-
 	
 	/**
 	 * Creates a board instance with empty code and feedback histories
@@ -53,7 +51,6 @@ public class Board
 		}
 	}
 	
-
 	/**
 	 * Takes the passed string parameter and adds that 
 	 * to the code history.
@@ -116,15 +113,14 @@ public class Board
 	}
 	
 	/**
-	 * Decrements the number of turns remaining by one
-	 * Returns nothing
+	 * Decrements the number of turns remaining by one.
 	 **/
 	public void takeTurn(){
 		turnsRemaining--;
 	}
 	
 	/**
-	 * Returns the number of turns remaining
+	 * Returns the number of turns remaining.
 	 * @return int: The number of turns remaining before the game is over
 	 **/
 	public int turnsLeft(){
@@ -132,13 +128,11 @@ public class Board
 	}
 
 	/**
-	 * Checks to see if the passed String parameter is in the code history
+	 * Checks to see if the passed String parameter is in the code history.
 	 * @param test The code to be checked as a string
 	 * @return boolean: True if found in the code history; False otherwise
 	 **/
-	public boolean InHistory(String test) {
-//		if(codeHistory.contains(test)){return true;}
-//		return false;
+	public boolean inHistory(String test) {
 		return codeHistory.contains(test);
 	}
 

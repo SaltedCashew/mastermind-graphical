@@ -193,9 +193,8 @@ public class Code
 				}
 			}
 		}
+	
 		return turnResult;
-		
-		
 	}
 	
 	/**

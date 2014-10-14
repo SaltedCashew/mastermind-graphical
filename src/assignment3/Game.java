@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 public class Game
 {  
 	private boolean showSol; 
-	Options gameOptions;
-	Board gameBoard;
+	private Options gameOptions;
+	private Board gameBoard;
 	
 	Game(boolean showCode) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
@@ -65,7 +65,7 @@ public class Game
 				if(playerGuess.getRequest().equals("HISTORY_REQUEST")){	gameBoard.displayHistory(); }
 				else if (playerGuess.getRequest().equals("HELP_REQUEST")){	gameBoard.displayHelp(); }
 			}
-			else if(gameBoard.InHistory(playerGuess.codeToString()))
+			else if(gameBoard.inHistory(playerGuess.codeToString()))
 			{
 				JOptionPane.showMessageDialog(null, "You've already guessed that. Try again"); 
 				playerGuess.resetCode();
@@ -99,12 +99,15 @@ public class Game
 	}
 	
 
-	
+	//Just displays a message box when the game is won
 	private void displayWinMsg()
 	{  
 		JOptionPane.showMessageDialog(null, "You guessed the secret code! You win!! Do you want to play again?");
 	}
 	
+	
+	//Displays a message box when the game is lost.
+	//Also displays the secret code.
 	private void displayLoseMsg(Code solution)
 	{
 		JOptionPane.showMessageDialog(null, "You failed to guess the secret code! The answer was: " + solution.codeToString() + ". You Lose!");

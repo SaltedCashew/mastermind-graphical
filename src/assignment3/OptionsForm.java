@@ -15,25 +15,35 @@ import javax.swing.SpinnerNumberModel;
 
 
 
+/**
+ * Options form to change the options of the game
+ * Changeable settings include the number of turns allowed,
+ * the size of the code, and the number of colors used in the code
+ * @author Robert Syvarth
+ * @version 1
+ */
+
 public class OptionsForm extends JPanel  { 
-	/**
-	 * Options form to change the options of the game
-	 * Changeable settings include the number of turns allowed,
-	 * the size of the code, and the number of colors used in the code
-	 * @author Robert Syvarth
-	 * @version 1
-	 */
 	private static final long serialVersionUID = 1L;
-	JLabel codeLabel, colorLabel, turnLabel, spacer;
-	JSpinner codeSpinner, colorSpinner, turnSpinner;
-	JCheckBox revealBox;
-	int code, color, turn;
-	boolean spoil, submitted = false;
+	private JLabel codeLabel, colorLabel, turnLabel;
+	private JSpinner codeSpinner, colorSpinner, turnSpinner;
+	private JCheckBox revealBox;
+	private int code, color, turn;
+	private boolean spoil = false;
 	
 	private static final int GAP = 3;
 	private static final Insets LABEL_INSETS = new Insets(GAP, GAP, GAP, 15);
 	private static final Insets TEXTFIELD_INSETS = new Insets(GAP, GAP, GAP, GAP);
 	
+	/**
+	 * Options form to change the options of the game
+	 * Changeable settings include the number of turns allowed,
+	 * the size of the code, and the number of colors used in the code
+	 * @param codeSize The size of the code as an int
+	 * @param numColors The number of colors to be used in the code as an int
+	 * @param numTurns The number of turns the player has in the game as an int
+	 * @param reveal Boolean - True: show the secret code; False: hide the secret code
+	 */
 	public void start(int codeSize, int numColors, int numTurns, boolean reveal)
 	{ 
 		codeLabel = new JLabel("Code Size :"); 
@@ -77,7 +87,60 @@ public class OptionsForm extends JPanel  {
 		add(revealBox, gbc);
 
 	}
+	
+	/**
+	 * Gets all of the inputs for the game options.
+	 * Input options: code size, number of colors, number of turns, and option to display secret code
+	 */	
+	public void getInputs()
+	{
+		code = (int) codeSpinner.getValue();
+		color = (int) colorSpinner.getValue();
+		turn = (int) turnSpinner.getValue();
+		spoil = revealBox.isSelected();
+	}
+	
+	/**
+	 * Returns the size used for the code, which is
+	 * set either by default or through game options
+	 * @return int value of the code size
+	 */	
+	public int getCodeSize() 
+	{
+		return code;
+	}
+	
+	/**
+	 * Returns the number of colors used for the code.
+	 * This is set either by default or through game options.
+	 * @return int value of the number of colors used in the code
+	 */	
+	public int getColors() 
+	{
+		return color;
+	}
+	
+	/**
+	 * Returns the size used for the code, which is
+	 * set either by default or through game options
+	 * @return int value of the code size
+	 */	
+	public int getTurns() 
+	{
+		return turn;
+	}
+	
+	/**
+	 * Returns the value of the option to show the secret code.
+	 * This is set to false by default, but can be changed to True through the game options.
+	 * @return boolean True if spoil secret box was selected. False otherwise
+	 */	
+	public boolean spoilSecret() 
+	{
+		return spoil;
+	}
 
+	//adds a spinner field to the main options form
 	private void addSpinnerField(JSpinner field, int row) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = 1;
@@ -92,6 +155,7 @@ public class OptionsForm extends JPanel  {
 		add(field, gbc);
 	}
 
+	//s a label to the main options form
 	private void addLabel(JLabel text, int row) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = 1;
@@ -106,35 +170,5 @@ public class OptionsForm extends JPanel  {
 		add(text, gbc);
 	}
 
-		
-	public void getInputs()
-	{
-		code = (int) codeSpinner.getValue();
-		color = (int) colorSpinner.getValue();
-		turn = (int) turnSpinner.getValue();
-		spoil = revealBox.isSelected();
-	}
 	
-	public int getCodeSize() 
-	{
-		return code;
-	}
-	
-	
-	public int getColors() 
-	{
-		return color;
-	}
-	
-	
-	public int getTurns() 
-	{
-		return turn;
-	}
-	
-	
-	public boolean spoilSecret() 
-	{
-		return spoil;
-	}
 }

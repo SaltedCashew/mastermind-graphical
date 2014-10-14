@@ -1,5 +1,5 @@
-/**Student Name: Brad Gray, Jake George
- *EID: bg22946, jag6626
+/**Student Name: Brad Gray, Robert Syvarth
+ *EID: bg22946
  *Lab Section: 16805
  *Assignment 2 - MasterMind
 **/
@@ -63,6 +63,7 @@ public class A3Driver {
 		msg1.append("Only the first letter of the color is displayed. B for Blue, R for Red, and so forth.<br>");
 		msg1.append("When entering guesses you only need to enter the first character of each color as a capital letter.<br><br>");
 		msg1.append("Type \"history\" at any time to see your previous guesses.<br>");
+		msg1.append("Type \"help\" at any time to see the allowable colors.<br><br>");
 		msg1.append("You have 15 guesses to figure out the secret code or you lose the game.<br>");
 		
 		JOptionPane.showMessageDialog(null, msg1, "Welcome to MasterMind", JOptionPane.OK_OPTION);

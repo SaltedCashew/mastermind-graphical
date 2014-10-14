@@ -14,18 +14,23 @@ import javax.swing.JOptionPane;
 public class IllegalGuessException extends InputMismatchException
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1186212468013811525L;
 
+	/**
+	 * Basic Exception Constructor
+	 * Does nothing by itself
+	 **/
 	public IllegalGuessException()
 	{
 	}
 
-	public IllegalGuessException(String arg0)
+	/**
+	 * Displays a JOPtionPane message box with the supplied parameter string as the message
+	 * @param arg The message to display as a String
+	 **/
+	public IllegalGuessException(String arg)
 	{
-		JOptionPane.showMessageDialog(null, arg0);
+		JOptionPane.showMessageDialog(null, arg);
 	}
 
 }

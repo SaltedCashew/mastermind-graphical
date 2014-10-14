@@ -111,6 +111,44 @@ public class Colors
 	}
 
 
+
+	
+	/*
+	 * Input parameter max is the limit of colors desired
+	 * allows for selecting a max less than the total available colors
+	 * Chooses a random integer k between 0 and the max parameter
+	 * returns the color object at index k of the color object arraylist
+	 */
+	private Colors getRandomColor(int max){
+		
+		Random r =  new Random();
+		int k = r.nextInt(max);
+		return getColor(k);
+	}
+	
+	/**
+	 * Returns the color object at index k
+	 * @param k Index/Key of desired color
+	 * @return The color object at location k 
+	 **/
+	public static Colors getColor(int k){
+		ArrayList<Colors> temp = createColors();
+		return temp.get(k);
+	}
+	
+	/**
+	 * Returns true if the implicit color object contains the same color value as the passed color object parameter
+	 * @param test Color object for testing against the implicit parameter
+	 * @return boolean 
+	 **/
+	public boolean equals(Colors test){
+//		if(colorInit.equals(test.colorInit)){
+//			return true;
+//		}
+//		return false;
+		return colorInit.equals(test.colorInit);
+	}
+
 	/**
 	 * Returns the max number of available colors
 	 * @return int : The maximum number of available colors
@@ -159,41 +197,4 @@ public class Colors
 		
 		return colorList;
 	}
-	
-	/*
-	 * Input parameter max is the limit of colors desired
-	 * allows for selecting a max less than the total available colors
-	 * Chooses a random integer k between 0 and the max parameter
-	 * returns the color object at index k of the color object arraylist
-	 */
-	private Colors getRandomColor(int max){
-		
-		Random r =  new Random();
-		int k = r.nextInt(max);
-		return getColor(k);
-	}
-	
-	/**
-	 * Returns the color object at index k
-	 * @param k Index/Key of desired color
-	 * @return The color object at location k 
-	 **/
-	public static Colors getColor(int k){
-		ArrayList<Colors> temp = createColors();
-		return temp.get(k);
-	}
-	
-	/**
-	 * Returns true if the implicit color object contains the same color value as the passed color object parameter
-	 * @param test Color object for testing against the implicit parameter
-	 * @return boolean 
-	 **/
-	public boolean equals(Colors test){
-//		if(colorInit.equals(test.colorInit)){
-//			return true;
-//		}
-//		return false;
-		return colorInit.equals(test.colorInit);
-	}
-
 }

@@ -15,9 +15,9 @@ public class Options
 	private int numColors;
 	private int numTurns;
 	private boolean reveal;
-	final int CODE_SIZE_DEFAULT = 5;
-	final int NUM_COLORS_DEFAULT = 7;
-	final int NUM_TURNS_DEFAULT = 15;
+	private final int CODE_SIZE_DEFAULT = 5;
+	private final int NUM_COLORS_DEFAULT = 7;
+	private final int NUM_TURNS_DEFAULT = 15;
 	
 	Options(){
 		codeSize = CODE_SIZE_DEFAULT;
@@ -94,8 +94,6 @@ public class Options
 		return numTurns;
 	}
 	
-
-	
 	/**
 	 * Returns the boolean value on whether the secret solution should be shown or not
 	 * True: show the secret solution
@@ -105,6 +103,15 @@ public class Options
 	public boolean spoilVal()
 	{
 		return reveal;
+	}
+	
+	 /**
+	 * Returns the number of colors to be used as entered by the player (or as default)
+	 * @return: numColors The selected number of colors
+	 */
+	public int gameColors()
+	{
+		return numColors;
 	}
 	
 	/*
@@ -118,15 +125,4 @@ public class Options
 		 		}
 		 		JOptionPane.showMessageDialog(null, msg);
 	}
-
-	 /**
-	 * Returns the number of colors to be used as entered by the player (or as default)
-	 * @return: numColors The selected number of colors
-	 */
-	public int gameColors()
-	{
-		return numColors;
-	}
-	
-	
 }
