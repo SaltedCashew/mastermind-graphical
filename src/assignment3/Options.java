@@ -1,7 +1,5 @@
 package assignment3;
 
-import java.util.InputMismatchException;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -49,6 +47,11 @@ public class Options
 				numTurns = form.getTurns();
 				reveal = form.spoilSecret();
 		      }
+		      
+		    if(numColors!=NUM_COLORS_DEFAULT)
+		    {
+		   	displayColorsUsed(numColors);
+		    }
 			
 		}
 	}
@@ -103,107 +106,18 @@ public class Options
 	{
 		return reveal;
 	}
-//	/*------------- getCodeSize ------------------------/
-//	 * Takes input on the size of code to use in the game
-//	 * Sets size to 4 by default, or if invalid entry
-//	 * Input: nothing
-//	 * Returns: size size of desired code
-//	 */
-//	
-//	private int getCodeSize()
-//	{ 
-//		int size = CODE_SIZE_DEFAULT; //default
-//		
-//		try
-//		{
-//			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the code size?", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
-//			if(input==JOptionPane.YES_OPTION)
-//			{  
-//				String sizeIn = JOptionPane.showInputDialog(null, "Enter the reasonable, positive code size (otherwise, default will be used)", "Settings - Code Size", JOptionPane.YES_NO_OPTION);
-//				size = Integer.parseInt(sizeIn);
-//				if(size < 1){ size = CODE_SIZE_DEFAULT;}
-//			}
-//		}
-//		catch(InputMismatchException e)	{	} //catch the exception so it doesn't go elsewhere, causes things to just keep going
-//		catch(NumberFormatException ex) { }
-//		JOptionPane.showMessageDialog(null, "Now using a code size of " + size);	
-//		return size;
-//	}
-//
-//	/*------------- getColors ------------------------/
-//	 * Takes input on the number to use in the game
-//	 * Sets size to 6 by default, or if invalid entry
-//	 * Input: nothing
-//	 * Returns: size size of desired code
-//	 */
-//	
-//	private int getColors()
-//	{ 
-//		int size = NUM_COLORS_DEFAULT; //default
-//		
-//		try
-//		{
-//			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of colors used in the code?", "Settings - Color Numbers", JOptionPane.YES_NO_OPTION);
-//				if(input == JOptionPane.YES_OPTION )
-//				{  
-//					String input2 = JOptionPane.showInputDialog(null, "Please enter a number between 1 and " + Colors.maxColors() + " (otherwise, default will be used)", "Settings", JOptionPane.YES_NO_OPTION);
-//					size = Integer.parseInt(input2);
-//					if(size < 1 || size > Colors.maxColors()){ 
-//						size = NUM_COLORS_DEFAULT;}
-//				}
-//		}
-//		catch(InputMismatchException e) { } //catch the exception so it doesn't go elsewhere, causes things to just keep going
-//		catch(NumberFormatException ex) { }
-//		
-//		StringBuilder msg = new StringBuilder("<html>Now using " + size + " different colors<br>");
-//		msg.append("The colors are:<br>");
-//		for(int k = 0; k<size; k++){
-//			msg.append(" " + Colors.getColor(k).toString() + "<br>");
-//		}
-//		JOptionPane.showMessageDialog(null, msg);
-//		return size;
-//	}
-//
-//	/*------------- getTurns ------------------------/
-//	 * Takes input on the number to use in the game
-//	 * Sets size to 12 by default, or if invalid entry
-//	 * Input: nothing
-//	 * Returns: size number of turns in the game
-//	 */
-//	
-//	private int getTurns()
-//	{ 
-//		int size = NUM_TURNS_DEFAULT; 
-//		
-//		try
-//		{	
-//			int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the number of turns?", "Settings - Turns", JOptionPane.YES_NO_OPTION);
-//			if(input == JOptionPane.YES_OPTION)
-//				{  
-//					String turnIn = JOptionPane.showInputDialog(null, "Enter a reasonable, positive number of turns (otherwise, default will be used", "Settings - Turns", JOptionPane.YES_NO_OPTION);
-//					
-//					size = Integer.parseInt(turnIn);
-//					if(size < 1){ size = NUM_TURNS_DEFAULT;} 
-//				}
-//		}
-//		catch(InputMismatchException e)	{ } //catch the exception so it doesn't go elsewhere, causes things to just keep going
-//		catch(NumberFormatException ex) { }
-//		JOptionPane.showMessageDialog(null, "The number of turns is now " + size);
-//		return size;
-//	}
-//	
-//	/*------------- spoilSecret ------------------------/
-//	 * Takes input on whether to display the secret code to the player
-//	 * for ease/debugging, or if it should remain hidden.
-//	 * Input: nothing
-//	 * Returns: false if the code is to remain hidden, and true otherwise
-//	 */
-//	private static boolean spoilSecret()
-//	{
-//		int input = JOptionPane.showConfirmDialog(null, "Show the secret code", "Settings - Spoilers", JOptionPane.YES_NO_OPTION);
-//		if(input==JOptionPane.YES_OPTION)	{ return true;	}
-//		return false;
-//	}
+	
+	/*
+	 * Static method to display the colors being used
+	 */
+	private static void displayColorsUsed(int numColors){
+		 StringBuilder msg = new StringBuilder("<html>Now using " + numColors + " different colors<br>");
+	 		msg.append("The colors are:<br>");
+		 		for(int k = 0; k<numColors; k++){
+		 			msg.append(" " + Colors.getColor(k).toString() + "<br>");
+		 		}
+		 		JOptionPane.showMessageDialog(null, msg);
+	}
 
 	 /**
 	 * Returns the number of colors to be used as entered by the player (or as default)

@@ -13,7 +13,17 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+
+
 public class OptionsForm extends JPanel  { 
+	/**
+	 * Options form to change the options of the game
+	 * Changeable settings include the number of turns allowed,
+	 * the size of the code, and the number of colors used in the code
+	 * @author Robert Syvarth
+	 * @version 1
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel codeLabel, colorLabel, turnLabel, spacer;
 	JSpinner codeSpinner, colorSpinner, turnSpinner;
 	JCheckBox revealBox;
