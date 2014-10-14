@@ -19,7 +19,6 @@ public class A3Driver {
 	
 	public static void main(String[] args)
 	{
-		
 		instPrompt();
 		try
 		{
