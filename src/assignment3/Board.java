@@ -47,7 +47,8 @@ public class Board
 		feedbackHistory = new ArrayList<Feedback>();
 		turnsRemaining = turns;
 		availableColors = new ArrayList<Colors>();
-		for(int k = 0; k < numColors; k++){
+		for(int k = 0; k < numColors; k++)
+		{
 			availableColors.add(new Colors(Colors.getColor(k)));
 		}
 	}
@@ -107,7 +108,8 @@ public class Board
 	public void displayHelp()
 	{
 		StringBuilder help = new StringBuilder("<html>The code is built from the following colors:<br>");
-		for(Colors c : availableColors){
+		for(Colors c : availableColors)
+		{
 			help.append(" " + c.toString() + "<br>");
 		}
 		JOptionPane.showMessageDialog(null, help, "Game Help", 0);
@@ -135,8 +137,9 @@ public class Board
 	 * @return boolean: True if found in the code history; False otherwise
 	 **/
 	public boolean InHistory(String test) {
-		if(codeHistory.contains(test)){return true; }
-		return false;
+//		if(codeHistory.contains(test)){return true;}
+//		return false;
+		return codeHistory.contains(test);
 	}
 
 }

@@ -49,13 +49,16 @@ public class Game
 		
 		final int NO_MORE_TURNS = 0;
 		while(gameOver==false && gameBoard.turnsLeft() > NO_MORE_TURNS)
-		{	StringBuilder turnPrompt = new StringBuilder();
+		{	
+			StringBuilder turnPrompt = new StringBuilder();
 			turnPrompt.append("<html>You have " + gameBoard.turnsLeft() + " guess(es) remaining.<br>");
 			turnPrompt.append("The code size is " + gameOptions.sizeOfCode() + ".<br><br>");
+			
 			if (showSol==true || gameOptions.spoilVal()==true)
 			{ 
 				turnPrompt.append("The solution is: " + solutionCode.codeToString() + "<br>");
 			}
+			
 			boolean request = playerGuess.getNextGuess(turnPrompt); //returns true if "History" or false if a valid guess
 			if(request)
 			{  //GetNextGuess returns a true value if the input is "History" and false if the input is a valid guess.

@@ -67,7 +67,8 @@ public class Colors
 	public Colors(String s, int numCols){
 		ArrayList<Colors> colorList = createColors();
 		boolean found = false;
-		for(int k = 0; k < numCols; k++){
+		for(int k = 0; k < numCols; k++)
+		{
 			if(colorList.get(k).colorInit.equals(s))
 			{
 				colorInit = colorList.get(k).colorInit;
@@ -151,7 +152,8 @@ public class Colors
 		temp2.add("C"); //cyan
 		temp2.add("V"); //violet
 		ArrayList<Colors> colorList = new ArrayList<Colors>();
-		for(int k = 0; k < temp.size(); k++){
+		for(int k = 0; k < temp.size(); k++)
+		{
 			colorList.add(new Colors(temp2.get(k), temp.get(k)) );
 		}
 		
@@ -187,10 +189,11 @@ public class Colors
 	 * @return boolean 
 	 **/
 	public boolean equals(Colors test){
-		if(colorInit.equals(test.colorInit)){
-			return true;
-		}
-		return false;
+//		if(colorInit.equals(test.colorInit)){
+//			return true;
+//		}
+//		return false;
+		return colorInit.equals(test.colorInit);
 	}
 
 }

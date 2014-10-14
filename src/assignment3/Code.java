@@ -48,7 +48,8 @@ public class Code
 		numColors = orig.numColors;
 		numPegs = orig.numPegs;
 		code = new ArrayList<Pegs>();
-		for(Pegs p : orig.code){
+		for(Pegs p : orig.code)
+		{
 			code.add(p);
 		}
 		playerRequest = new String(orig.playerRequest);
@@ -64,7 +65,6 @@ public class Code
 			Pegs codePeg = new Pegs(numColors); //generates peg at random from the number of desired colors
 			code.add(codePeg);
 		}
-		return;
 	}
 	
 	/**Returns the given Code in a String of characters only
@@ -74,7 +74,8 @@ public class Code
 	public String codeToString()
 	{ 
 		String temp = "";
-		for(Pegs p : code){
+		for(Pegs p : code)
+		{
 			temp += p.toString();
 		}
 		return temp;
@@ -109,7 +110,9 @@ public class Code
 					playerRequest = new String ("HELP_REQUEST");
 					return true;
 				}
+				
 				if(inGuess.length()!=numPegs){throw new IllegalGuessException("Please ensure you use the correct number of pegs (Code size).");}
+				
 				for(int i=0; i<numPegs;i++)
 				{
 					c = inGuess.substring(i, i+1);
@@ -133,7 +136,8 @@ public class Code
 				validEntry = false;
 			}
 
-		}while(validEntry==false);
+		} while(validEntry==false);
+		
 		return false;
 	}
 	
@@ -165,7 +169,7 @@ public class Code
 		}
 		Feedback turnResult = new Feedback();
 		int codeSize = numPegs;
-		for(int i=0; i<codeSize; i++)
+		for(int i = 0; i < codeSize; i++)
 		{ 
 			if(solCopy.get(i).equals(playerCopy.get(i))) //if both pegs are equal
 			{ 
@@ -177,15 +181,17 @@ public class Code
 			}
 		}
 		
-		for(Pegs p : playerCopy){
+		for(Pegs p : playerCopy)
+		{
 			for(int k = 0; k < solCopy.size(); k++)
-			if(p.equals(solCopy.get(k))) //if both pegs are equal, but positions are not
 			{
-				turnResult.addWhitePeg();
-				solCopy.remove(k);
-				break;
+				if(p.equals(solCopy.get(k))) //if both pegs are equal, but positions are not
+				{
+					turnResult.addWhitePeg();
+					solCopy.remove(k);
+					break;
+				}
 			}
-	
 		}
 		return turnResult;
 		

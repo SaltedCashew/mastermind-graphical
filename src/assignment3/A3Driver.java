@@ -21,7 +21,8 @@ public class A3Driver {
 	{
 		
 		instPrompt();
-		try{
+		try
+		{
 			while(true)
 			{
 				int choice = JOptionPane.showConfirmDialog(null, "Are you ready to play? (Y/N)", "MasterMind", JOptionPane.YES_NO_OPTION);
@@ -36,7 +37,8 @@ public class A3Driver {
 				}	
 			}	
 		}
-		catch( NullPointerException np){
+		catch( NullPointerException np)
+		{
 			JOptionPane.showMessageDialog(null, "Something's gone wrong.   Goodbye");
 		}
 		System.exit(0);

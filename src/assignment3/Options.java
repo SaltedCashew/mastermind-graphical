@@ -32,7 +32,8 @@ public class Options
 	 * Implicit parameter of a options instance.
 	 * Requests option settings from the user and sets user determined options within that instance 
 	 **/
-	public void setOptions(){
+	public void setOptions()
+	{
 		int input = JOptionPane.showConfirmDialog(null, "Would you like to edit the game settings?", "Settings", JOptionPane.YES_NO_OPTION);
 		if(input == JOptionPane.YES_OPTION)
 		{  
@@ -48,7 +49,8 @@ public class Options
 	 * Returns the size of the code within the options instance
 	 * @return codeSize 
 	 **/
-	public int sizeOfCode(){
+	public int sizeOfCode()
+	{
 		return codeSize;
 	}
 	
@@ -56,14 +58,16 @@ public class Options
 	 * Returns the size of the code within the options instance
 	 * @return numTurns
 	 **/
-	public int gameTurns(){
+	public int gameTurns()
+	{
 		return numTurns;
 	}
 	
 	/**
 	 * @return int The number of colors being used in the code
 	 **/
-	public int colorNum(){
+	public int colorNum()
+	{
 		return numColors;
 	}
 	
@@ -86,7 +90,8 @@ public class Options
 	 * False: Don't show the secret solution
 	 * @return reveal boolean
 	 **/
-	public boolean spoilVal(){
+	public boolean spoilVal()
+	{
 		return reveal;
 	}
 	/*------------- getCodeSize ------------------------/
@@ -195,7 +200,8 @@ public class Options
 	 * Returns the number of colors to be used as entered by the player (or as default)
 	 * @return: numColors The selected number of colors
 	 */
-	public int gameColors() {
+	public int gameColors()
+	{
 		return numColors;
 	}
 	

@@ -24,7 +24,8 @@ public class Pegs
 	 * the desired number of colors as determined by the passed int parameter
 	 * @param int: The number of colors to choose from
 	 **/
-	Pegs(int num){ //num will be the number of colors to choose from
+	Pegs(int num)
+	{ //num will be the number of colors to choose from
 		pegColor = new Colors(num);
 	}
 	
@@ -36,7 +37,8 @@ public class Pegs
 	 * @parameter s The desired color initial as a string 
 	 * @param numCols The number of colors to choose from as an int
 	 **/
-	Pegs(String s, int numCols){
+	Pegs(String s, int numCols)
+	{
 			pegColor = new Colors(s, numCols);
 	}
 	
@@ -45,7 +47,8 @@ public class Pegs
 	 * the desired number of colors as determined by the passed int parameter
 	 * @return String: The abbreviation of the peg color as a string
 	 **/
-	public String toString(){
+	public String toString()
+	{
 		return pegColor.toString_Init();
 	}
 	
@@ -55,9 +58,11 @@ public class Pegs
 	 * @param test: Pegs object to test against the implicit parameter
 	 * @return boolean: True if the two peg objects are equal. False otherwise
 	 **/
-	public boolean equals(Pegs test){
-		if (pegColor.equals(test.pegColor)) { return true;}
-		return false;
+	public boolean equals(Pegs test)
+	{
+//		if (pegColor.equals(test.pegColor)) { return true;}
+//		return false;
+		return pegColor.equals(test.pegColor);
 	}
 } 
 
