@@ -65,7 +65,7 @@ public class Game
 				if(playerGuess.getRequest().equals("HISTORY_REQUEST")){	gameBoard.displayHistory(); }
 				else if (playerGuess.getRequest().equals("HELP_REQUEST")){	gameBoard.displayHelp(); }
 			}
-			else if(gameBoard.inHistory(playerGuess.codeToString()))
+			else if(gameBoard.inHistory(playerGuess))
 			{
 				JOptionPane.showMessageDialog(null, "You've already guessed that. Try again"); 
 				playerGuess.resetCode();

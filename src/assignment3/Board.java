@@ -132,8 +132,17 @@ public class Board
 	 * @param test The code to be checked as a string
 	 * @return boolean: True if found in the code history; False otherwise
 	 **/
-	public boolean inHistory(String test) {
-		return codeHistory.contains(test);
+	public boolean inHistory(Code test) {
+		//return codeHistory.contains(test);
+		for(Code code : codeHistory) 
+		{
+			if(code.codeToString().equals(test.codeToString()))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }
