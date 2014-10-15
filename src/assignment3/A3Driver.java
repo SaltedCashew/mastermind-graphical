@@ -1,5 +1,5 @@
 /**Student Name: Brad Gray, Robert Syvarth
- *EID: bg22946
+ *EID: bg22946, rs42999
  *Lab Section: 16805
  *Assignment 2 - MasterMind
 **/
@@ -49,10 +49,8 @@ public class A3Driver {
 	 * Input: nothing
 	 * Returns: nothing
 	 */
-	
 	private static void instPrompt()
 	{ 
-		
 		StringBuilder msg1 = new StringBuilder();
 		msg1.append("<html>The computer will think of a secret code <br>The code consists of a default of 7 different colors.<br><br>");
 		msg1.append("The pegs MUST be one of stated colors: default is blue, green, orange, purple, red, yellow, and maroon.<br>");
@@ -67,7 +65,5 @@ public class A3Driver {
 		msg1.append("You have 15 guesses to figure out the secret code or you lose the game.<br>");
 		
 		JOptionPane.showMessageDialog(null, msg1, "Welcome to MasterMind", JOptionPane.OK_OPTION);
-	
 	}
-	
 }

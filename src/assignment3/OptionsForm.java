@@ -85,7 +85,6 @@ public class OptionsForm extends JPanel  {
 	      gbc.weightx = 1.0;
 	      gbc.weighty = 1.0;
 		add(revealBox, gbc);
-
 	}
 	
 	/**
@@ -169,6 +168,4 @@ public class OptionsForm extends JPanel  {
 		gbc.weighty = 1.0;
 		add(text, gbc);
 	}
-
-	
 }

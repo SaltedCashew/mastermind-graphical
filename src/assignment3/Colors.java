@@ -28,7 +28,6 @@ public class Colors
 		colorName = tempColor.colorName;
 	}
 	
-	
 	/**
 	 * Creates a color copy of the passed Colors parameter
 	 * @param c The Colors object to be copied
@@ -53,6 +52,7 @@ public class Colors
 		else{
 			tempColor = getRandomColor(numColors);	
 		}
+		
 		colorInit = tempColor.colorInit;
 		colorName = tempColor.colorName;
 	}
@@ -110,17 +110,15 @@ public class Colors
 		return colorInit;
 	}
 
-
-
-	
-	/*
+	/**
 	 * Input parameter max is the limit of colors desired
 	 * allows for selecting a max less than the total available colors
 	 * Chooses a random integer k between 0 and the max parameter
 	 * returns the color object at index k of the color object arraylist
-	 */
+	 * @param int The number of colors we can choose from
+	 * @return Colors the random color
+	 **/
 	private Colors getRandomColor(int max){
-		
 		Random r =  new Random();
 		int k = r.nextInt(max);
 		return getColor(k);
@@ -142,10 +140,6 @@ public class Colors
 	 * @return boolean 
 	 **/
 	public boolean equals(Colors test){
-//		if(colorInit.equals(test.colorInit)){
-//			return true;
-//		}
-//		return false;
 		return colorInit.equals(test.colorInit);
 	}
 
@@ -156,7 +150,6 @@ public class Colors
 	public static int maxColors(){
 		return MAX_COLORS;
 	}
-	
 	
 	/*
 	 * Creates 2 arraylists of colors

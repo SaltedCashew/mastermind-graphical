@@ -18,21 +18,25 @@ public class Game
 	private Options gameOptions;
 	private Board gameBoard;
 	
+	/**
+	 * Constructor for the Game class
+	 * @param showCode whether or not to show the solution
+	 */
 	Game(boolean showCode) //parameters: show solution, code size, number of colors, and number of turns for the game
 	{
 		gameOptions = new Options(); 
 		gameOptions.setOptions();
-		if (showCode == true){showSol = true;}
-		else {showSol = false;} //using showSol as a hard overwrite for showing the solution
+		
+		showSol = showCode == true ? true : false; //using showSol as a hard overwrite for showing the solution
+		
 		gameBoard = new Board(gameOptions.gameTurns(), gameOptions.gameColors());
 	}
 	
 	
 	/**
-	 * Promts the user for desired game options
+	 * Prompts the user for desired game options
 	 * Stores responses as the game instance options
 	 **/
-	
 	public void setOptions(){
 		gameOptions.setOptions();
 	}
@@ -41,7 +45,8 @@ public class Game
 	 * Runs the Mastermind game for the implicit game instance
 	 **/
 	public void runGame()
-	{	JOptionPane.showMessageDialog(null, "Generating Secret Code...\n Press OK to continue");
+	{	
+		JOptionPane.showMessageDialog(null, "Generating Secret Code...\n Press OK to continue");
 		Code solutionCode =  new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		Code playerGuess = new Code(gameOptions.sizeOfCode(), gameOptions.colorNum());
 		solutionCode.generateSolution();
@@ -98,13 +103,11 @@ public class Game
 		
 	}
 	
-
 	//Just displays a message box when the game is won
 	private void displayWinMsg()
 	{  
 		JOptionPane.showMessageDialog(null, "You guessed the secret code! You win!! Do you want to play again?");
 	}
-	
 	
 	//Displays a message box when the game is lost.
 	//Also displays the secret code.

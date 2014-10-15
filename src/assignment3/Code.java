@@ -20,18 +20,17 @@ import javax.swing.JOptionPane;
 
 public class Code
 {
-	
+
 	private int numPegs; //size of solution
 	private ArrayList<Pegs> code;
 	private int numColors; 
 	private String playerRequest; //allows for input requests: 
-
 	
 	/**Code constructor with size and colors
 	 * @param int The desired size of the code
 	 * @param int The desired number of colors to use in the code 
 	 **/
-	Code(int codeSize, int colors) //
+	Code(int codeSize, int colors)
 	{  
 		numColors = colors;
 		numPegs = codeSize;
@@ -43,7 +42,7 @@ public class Code
 	 * Creates a new Code object as a deep copy of the passed Code object
 	 * @param orig The existing code object
 	 **/
-	Code(Code orig) //
+	Code(Code orig)
 	{  
 		numColors = orig.numColors;
 		numPegs = orig.numPegs;
@@ -83,7 +82,7 @@ public class Code
 	
 	/**Asks for and gets next guess from player. Stores guess in implicit Code parameter
 	 * @param prompt StringBuilder; Allows for passing an input prompt to add to the JOptionPane display text
-	 * @return boolean; If next guess is a request for guess history. False if guess is valid code guess
+	 * @return boolean; True if next guess is a request for guess history. False if guess is valid code guess
 	 * @throws InputMismatchException if input not equal to Code size or if guess contains invalid colors
 	 **/	
 	public boolean getNextGuess(StringBuilder prompt)
@@ -156,17 +155,19 @@ public class Code
 	 **/
 	public Feedback compareCodes(Code playerGuess)
 	{
-		
 		ArrayList<Pegs> solCopy = new ArrayList<Pegs>(code.size());
 		ArrayList<Pegs> playerCopy = new ArrayList<Pegs>(playerGuess.code.size());
+		
 		for(Pegs item: code)
 		{
 			 solCopy.add(item);
 		}
+		
 		for(Pegs item: playerGuess.code)
 		{
 			playerCopy.add(item);
 		}
+		
 		Feedback turnResult = new Feedback();
 		int codeSize = numPegs;
 		for(int i = 0; i < codeSize; i++)

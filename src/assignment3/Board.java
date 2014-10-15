@@ -30,7 +30,6 @@ public class Board
 		feedbackHistory = new ArrayList<Feedback>();
 		turnsRemaining = DEFAULT_TURNS;
 		availableColors = new ArrayList<Colors>();
-		
 	}
 	
 	/**
@@ -133,7 +132,6 @@ public class Board
 	 * @return boolean: True if found in the code history; False otherwise
 	 **/
 	public boolean inHistory(Code test) {
-		//return codeHistory.contains(test);
 		for(Code code : codeHistory) 
 		{
 			if(code.codeToString().equals(test.codeToString()))
@@ -141,8 +139,6 @@ public class Board
 				return true;
 			}
 		}
-		
 		return false;
 	}
-
 }

@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
  * @author Brad Gray, EE422C
  * @version 1
  **/
-
 public class Options
 {
 	private int codeSize;
@@ -39,23 +38,22 @@ public class Options
 			OptionsForm form = new OptionsForm();
 			form.start(codeSize, numColors, numTurns, reveal);
 			
-		      int result = JOptionPane.showConfirmDialog(null, form, "Set Options", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		      if (result == JOptionPane.OK_OPTION) {
-		         form.getInputs();
-		         codeSize = form.getCodeSize();
-				numColors = form.getColors();
-				numTurns = form.getTurns();
-				reveal = form.spoilSecret();
-		      }
+		    int result = JOptionPane.showConfirmDialog(null, form, "Set Options", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		    if (result == JOptionPane.OK_OPTION)
+		    {
+		    	  form.getInputs();
+		    	  codeSize = form.getCodeSize();
+		    	  numColors = form.getColors();
+		    	  numTurns = form.getTurns();
+		    	  reveal = form.spoilSecret();
+		    }
 		      
 		    if(numColors!=NUM_COLORS_DEFAULT)
 		    {
-		   	displayColorsUsed(numColors);
+		    	displayColorsUsed(numColors);
 		    }
-			
 		}
 	}
-	
 	
 	/**
 	 * Returns the size of the code within the options instance
@@ -119,10 +117,10 @@ public class Options
 	 */
 	private static void displayColorsUsed(int numColors){
 		 StringBuilder msg = new StringBuilder("<html>Now using " + numColors + " different colors<br>");
-	 		msg.append("The colors are:<br>");
-		 		for(int k = 0; k<numColors; k++){
-		 			msg.append(" " + Colors.getColor(k).toString() + "<br>");
-		 		}
-		 		JOptionPane.showMessageDialog(null, msg);
+	 	msg.append("The colors are:<br>");
+		for(int k = 0; k<numColors; k++){
+			msg.append(" " + Colors.getColor(k).toString() + "<br>");
+		}
+		JOptionPane.showMessageDialog(null, msg);
 	}
 }

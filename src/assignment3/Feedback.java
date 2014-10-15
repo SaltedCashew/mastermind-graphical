@@ -16,6 +16,9 @@ public class Feedback
 	private int numBlackPegs;
 	private int numWhitePegs;
 	
+	/**
+	 * Default constructor for the feedback class
+	 */
 	Feedback()
 	{
 		numBlackPegs = 0;
@@ -50,7 +53,7 @@ public class Feedback
 	
 	/**
 	 * Returns the number of white pegs in the feedback object.
-	 * The number ofwhite pegs is the number of correct colors in the correct position.
+	 * The number of white pegs is the number of correct colors in the correct position.
 	 * @return numWhitePegs The number of white pegs
 	 **/
 	public int getWhitePegNum()

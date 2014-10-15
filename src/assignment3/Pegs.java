@@ -57,8 +57,6 @@ public class Pegs
 	 **/
 	public boolean equals(Pegs test)
 	{
-//		if (pegColor.equals(test.pegColor)) { return true;}
-//		return false;
 		return pegColor.equals(test.pegColor);
 	}
 } 

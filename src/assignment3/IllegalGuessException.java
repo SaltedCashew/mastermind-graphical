@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
  * @author Brad Gray, EE422C
  * @version 1
  */
-
 public class IllegalGuessException extends InputMismatchException
 {
 
